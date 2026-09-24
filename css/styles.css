@@ -235,9 +235,9 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
     position: fixed; inset: 0; z-index: 55;
     flex-direction: column; justify-content: center; gap: 2.5rem;
     background: var(--c-bg); opacity: 0; visibility: hidden;
-    transition: opacity 0.35s var(--ease), visibility 0.35s;
+    transition: opacity 0.35s var(--ease), visibility 0s linear 0.35s;
   }
-  .menu-open .site-nav { opacity: 1; visibility: visible; }
+  .menu-open .site-nav { opacity: 1; visibility: visible; transition: opacity 0.35s var(--ease), visibility 0s; }
   .site-nav ul { flex-direction: column; align-items: center; gap: 1.25rem; }
   .site-nav a:not(.btn) { font-family: var(--f-serif); font-size: 2.1rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; }
 }
