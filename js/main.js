@@ -159,10 +159,47 @@
     window.addEventListener('hashchange', openFromHash);
   }
 
+  /* Formulario de Contacto: valida y abre WhatsApp con el mensaje compuesto.
+     Sin JS se queda la validación nativa del navegador (required). */
+  function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    form.noValidate = true;
+    const fields = [form.elements.nombre, form.elements.mensaje];
+
+    const setError = (field, message) => {
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      document.getElementById('err-' + field.name).textContent = message;
+    };
+
+    fields.forEach((field) => {
+      field.addEventListener('input', () => {
+        if (field.value.trim()) setError(field, '');
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const invalid = fields.filter((field) => !field.value.trim());
+      fields.forEach((field) => setError(field, invalid.includes(field) ? field.dataset.error : ''));
+      if (invalid.length) {
+        invalid[0].focus();
+        return;
+      }
+      const message = lib.composeContactMessage({
+        name: form.elements.nombre.value,
+        service: form.elements.servicio.value,
+        message: form.elements.mensaje.value
+      });
+      window.open(lib.buildWaUrl(data.business.phoneDigits, message), '_blank', 'noopener');
+    });
+  }
+
   fillData();
   wireWhatsApp();
   initHeader();
   initMenu();
   initTabs();
+  initContactForm();
   initReveal();
 })();
