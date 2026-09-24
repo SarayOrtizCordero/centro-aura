@@ -43,11 +43,14 @@ Estética de marca tomada del Instagram: local blanco y luminoso, madera clara, 
 | `--c-bg` | `#FFFDF7` | Fondo principal |
 | `--c-bg-alt` | `#F6F0E4` | Secciones alternas, bloque "Hola, soy Paula" |
 | `--c-line` | `#E9DDC8` | Bordes, separadores, fondo de tarjetas y retrato, relleno hover de botones |
-| `--c-muted` | `#B2A38F` | Etiquetas en versalitas, iconos, texto secundario grande |
+| `--c-muted` | `#B2A38F` | Solo decorativo: iconos, números de pasos, tapón de los botes. **Nunca** en texto |
 | `--c-accent` | `#D2C244` | Solo decorativo: loto, línea bajo el logo, subrayados hover. **Nunca** en texto |
-| `--c-text` | `#4A4238` | Texto de lectura (derivado; contraste AA sobre todos los fondos) |
+| `--c-text` | `#4A4238` | Texto de lectura (derivado; 8,7:1 sobre `--c-bg-alt`) |
+| `--c-text-soft` | `#6B6153` | Etiquetas en versalitas y texto secundario (derivado; ≥ 4,5:1 sobre `--c-bg` y `--c-bg-alt`) |
+| `--c-border` | `#8C7F6D` | Bordes de campos de formulario (derivado; ≥ 3:1) |
+| `--c-error` | `#9B3D2E` | Mensajes de error del formulario (derivado; ≥ 4,5:1) |
 
-Reglas: `--c-muted` solo en texto ≥ 18px o en versalitas en negrita; los párrafos siempre en `--c-text`.
+Regla: `#B2A38F` no alcanza 3:1 sobre el fondo crema (2,4:1), así que no se usa en texto de ningún tamaño.
 
 ### 3.2 Tipografía (Google Fonts, `display=swap`)
 
@@ -74,10 +77,13 @@ pages/tienda.html
 pages/contacto.html
 css/styles.css          tokens → base → layout → componentes → páginas → utilidades
 js/data.js              fuente única de datos de negocio (window.AURA_DATA)
+js/lib.js               funciones puras sin DOM (window.AuraLib); testeables en Node
 js/main.js              comportamiento: menú, cabecera, pestañas, animaciones, rellenado de datos, WhatsApp
 assets/img/             fotos (stock ahora; reales más adelante, mismos nombres)
 assets/icons/           loto.svg, favicon.svg
-docs/superpowers/specs/ esta especificación
+tools/                  serve.mjs (servidor local), fetch-images.mjs + images.json (descarga de fotos)
+tests/                  tests con node:test (npm test)
+docs/superpowers/       especificación y plan
 ```
 
 ### 4.1 Flujo de datos
@@ -167,9 +173,9 @@ docs/superpowers/specs/ esta especificación
 
 Fotos de stock de Unsplash (licencia libre) con estética crema y lino, descargadas a `assets/img/` en WebP con nombres estables, para cambiarlas por las reales sin tocar código:
 
-`hero-salon`, `destacado-spa`, `destacado-tricologia`, `destacado-terapias`, `paula-retrato`, `jaldun-equilibrante`, `jaldun-vitalzen`, `jaldun-multiefecto`, `tarjeta-regalo`, `textura-lino` y las fotos de servicio `servicio-<id>`.
+`hero-salon`, `destacado-spa`, `destacado-tricologia`, `destacado-terapias`, `paula-retrato`, `tarjeta-regalo`, `textura-lino` (fondo de las cabeceras interiores) y una foto por categoría de servicio: `servicio-salud`, `servicio-tratamientos`, `servicio-peluqueria`.
 
-Si no hay foto de producto de stock que encaje, la ficha usa un fondo `--c-line` con el nombre del producto en serif (queda bien y es honesto para una demo). Todas las imágenes llevan `alt`, `width` y `height`. Todas salvo el hero llevan `loading="lazy"`.
+Los productos Jaldún y las tarjetas regalo no usan foto de stock. Se dibujan con CSS (un bote o una tarjeta en tonos de la paleta, con el nombre en serif), que queda bien y es honesto para una demo. La lista de fotos, con su ID de Unsplash y su tamaño, vive en `tools/images.json`. Los créditos van en `assets/img/CREDITOS.md`. Todas las imágenes llevan `alt`, `width` y `height`. Todas salvo el hero llevan `loading="lazy"`.
 
 ## 7. Accesibilidad, rendimiento y SEO
 
@@ -193,7 +199,8 @@ Antes de dar la demo por terminada:
 4. Menú móvil: se abre y se cierra, funciona Esc, el foco queda atrapado y `aria-expanded` es correcto.
 5. Pestañas de Servicios con ratón y teclado; el enlace `servicios.html#spa-capilar` abre la pestaña correcta.
 6. El formulario de Contacto bloquea el envío con campos vacíos y compone bien el mensaje.
-7. Con el JS desactivado, el contenido sigue visible y los botones de WhatsApp siguen funcionando (con el enlace genérico).
+7. Con el JS desactivado, el contenido sigue visible y los botones de WhatsApp siguen funcionando (con el enlace genérico). En móvil sin JS el menú hamburguesa no abre, pero el pie repite todos los enlaces de navegación.
+8. Tests automáticos (`npm test`, con `node:test` y sin dependencias): funciones puras, integridad de `data.js`, estructura de cada página, recursos locales existentes, dimensiones reales de las imágenes iguales a sus atributos `width` y `height`, y horario del JSON-LD igual al de `data.js`.
 
 ## 9. Fuera de alcance
 
