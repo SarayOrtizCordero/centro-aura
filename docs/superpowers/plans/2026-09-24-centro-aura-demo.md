@@ -483,16 +483,16 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Files:**
 - Create: `tools/images.json`, `tools/fetch-images.mjs`, `tests/helpers.js`, `tests/assets.test.js`, `assets/icons/loto.svg`, `assets/icons/favicon.svg`
-- Generated: `assets/img/*.webp` (10 archivos) y `assets/img/CREDITOS.md`
+- Generated: `assets/img/*.webp` (9 archivos) y `assets/img/CREDITOS.md`
 
 **Interfaces:**
 - Consumes: nada.
 - Produces:
   - `tests/helpers.js` exporta `ROOT: string`, `read(rel): string`, `pageFiles(): string[]` (con `index.html` y `pages/*.html`) y `webpSize(buf: Buffer): [width, height]`.
-  - Fotos en `assets/img/` con tamaño exacto: `hero-salon` 2000×1333, `destacado-spa|destacado-tricologia|destacado-terapias` 900×1125, `paula-retrato` 640×640, `tarjeta-regalo` 1200×900, `textura-lino` 2000×900, `servicio-salud|servicio-tratamientos|servicio-peluqueria` 1000×1250.
+  - Fotos en `assets/img/` con tamaño exacto: `hero-salon` 2000×1333, `destacado-spa|destacado-tricologia|destacado-terapias` 900×1125, `tarjeta-regalo` 1200×900, `textura-lino` 2000×900, `servicio-salud|servicio-tratamientos|servicio-peluqueria` 1000×1250. **No hay foto de Paula**: por decisión del usuario, su retrato es un círculo de color (Task 6) hasta que tengamos una foto real.
   - `assets/icons/loto.svg` (64×40) y `assets/icons/favicon.svg`.
 
-> **Nota:** el Step 5 descarga 10 archivos de `images.unsplash.com` (unos 1,5–2,5 MB en total). Pide confirmación al usuario antes si no la ha dado ya.
+> **Nota:** el Step 5 descarga 9 archivos de `images.unsplash.com` (unos 1,5–2,5 MB en total). El usuario ya ha dado su permiso para esta descarga.
 
 - [ ] **Step 1: Crear `tools/images.json`**
 
@@ -502,7 +502,6 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
   { "name": "destacado-spa",         "id": "1757066033634-bbbf874ce525", "width": 900,  "height": 1125 },
   { "name": "destacado-tricologia",  "id": "1733685373279-a10ac3f255e7", "width": 900,  "height": 1125 },
   { "name": "destacado-terapias",    "id": "1706795034830-de41aee06afa", "width": 900,  "height": 1125 },
-  { "name": "paula-retrato",         "id": "1580489944761-15a19d654956", "width": 640,  "height": 640, "crop": "faces" },
   { "name": "tarjeta-regalo",        "id": "1687617788315-cf8bfd1592c3", "width": 1200, "height": 900 },
   { "name": "textura-lino",          "id": "1705951320394-eda5d939d0ac", "width": 2000, "height": 900 },
   { "name": "servicio-salud",        "id": "1757066033606-b9552acb2dd0", "width": 1000, "height": 1250 },
@@ -581,7 +580,7 @@ test('iconos SVG de marca', () => {
 - [ ] **Step 4: Ejecutar los tests y comprobar que fallan**
 
 Run: `npm test`
-Expected: FAIL. Los 10 tests de imagen dan "falta la imagen" y el de iconos da ENOENT.
+Expected: FAIL. Los 9 tests de imagen dan "falta la imagen" y el de iconos da ENOENT.
 
 - [ ] **Step 5: Crear `tools/fetch-images.mjs` y ejecutarlo**
 
@@ -623,7 +622,7 @@ await writeFile(path.join(OUT, 'CREDITOS.md'), credits.join('\n'));
 ```
 
 Run: `npm run images`
-Expected: 10 líneas `✓ <nombre>.webp  <n> KB`.
+Expected: 9 líneas `✓ <nombre>.webp  <n> KB`.
 
 - [ ] **Step 6: Crear `assets/icons/loto.svg`**
 
@@ -656,7 +655,7 @@ Expected: 10 líneas `✓ <nombre>.webp  <n> KB`.
 - [ ] **Step 8: Ejecutar los tests y comprobar que pasan**
 
 Run: `npm test`
-Expected: PASS, 31 tests. Si una imagen no mide lo esperado, cambia el ID en `tools/images.json` por otra foto de Unsplash y vuelve a ejecutar `npm run images`.
+Expected: PASS, 30 tests. Si una imagen no mide lo esperado, cambia el ID en `tools/images.json` por otra foto de Unsplash y vuelve a ejecutar `npm run images`.
 
 - [ ] **Step 9: Commit**
 
@@ -1096,7 +1095,7 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
 - [ ] **Step 3: Comprobar la sintaxis y que los tests siguen pasando**
 
 Run: `node --check js/main.js && npm test`
-Expected: sin errores de sintaxis; PASS, 31 tests.
+Expected: sin errores de sintaxis; PASS, 30 tests.
 
 - [ ] **Step 4: Commit**
 
@@ -1856,9 +1855,9 @@ Expected: FAIL. `inicio.test.js` no carga porque no encuentra el JSON-LD (`Canno
 
     <section class="section section--alt" aria-labelledby="paula-title">
       <div class="container about">
-        <div class="about__portrait reveal">
-          <img src="assets/img/paula-retrato.webp" alt="Paula, peluquera y fundadora de Centro Aura" width="640" height="640" loading="lazy">
-        </div>
+        <!-- Espacio reservado para la foto de Paula: sustituir el div vacío por
+             <img src="assets/img/paula-retrato.webp" alt="Paula, peluquera y fundadora de Centro Aura" width="640" height="640" loading="lazy"> -->
+        <div class="about__portrait about__portrait--placeholder reveal" aria-hidden="true"></div>
         <div class="about__text reveal">
           <span class="eyebrow">Peluquera titulada · Fundadora</span>
           <h2 class="title" id="paula-title">Hola, soy Paula</h2>
@@ -2007,6 +2006,8 @@ Expected: FAIL. `inicio.test.js` no carga porque no encuentra el JSON-LD (`Canno
   background: var(--c-line); box-shadow: 0 0 0 12px var(--c-bg-alt), 0 0 0 13px var(--c-line);
 }
 .about__portrait img { width: 100%; height: 100%; object-fit: cover; }
+/* Sin foto de Paula todavía: círculo en dorado suave de la paleta */
+.about__portrait--placeholder { background: radial-gradient(circle at 35% 30%, #E4D98A 0%, var(--c-accent) 70%); }
 .about__text p { max-width: 54ch; margin-inline: auto; }
 .about__text .link-arrow { margin-top: 1.5rem; }
 @media (min-width: 800px) {

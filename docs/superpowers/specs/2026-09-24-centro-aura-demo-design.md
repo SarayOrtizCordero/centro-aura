@@ -173,7 +173,9 @@ docs/superpowers/       especificación y plan
 
 Fotos de stock de Unsplash (licencia libre) con estética crema y lino, descargadas a `assets/img/` en WebP con nombres estables, para cambiarlas por las reales sin tocar código:
 
-`hero-salon`, `destacado-spa`, `destacado-tricologia`, `destacado-terapias`, `paula-retrato`, `tarjeta-regalo`, `textura-lino` (fondo de las cabeceras interiores) y una foto por categoría de servicio: `servicio-salud`, `servicio-tratamientos`, `servicio-peluqueria`.
+`hero-salon`, `destacado-spa`, `destacado-tricologia`, `destacado-terapias`, `tarjeta-regalo`, `textura-lino` (fondo de las cabeceras interiores) y una foto por categoría de servicio: `servicio-salud`, `servicio-tratamientos`, `servicio-peluqueria`.
+
+**Retrato de Paula:** sin foto de stock, por decisión del usuario. Es un círculo en dorado suave de la paleta hasta tener su foto real (`paula-retrato.webp`, 640×640), y el HTML deja un comentario con la etiqueta `<img>` lista para pegar.
 
 Los productos Jaldún y las tarjetas regalo no usan foto de stock. Se dibujan con CSS (un bote o una tarjeta en tonos de la paleta, con el nombre en serif), que queda bien y es honesto para una demo. La lista de fotos, con su ID de Unsplash y su tamaño, vive en `tools/images.json`. Los créditos van en `assets/img/CREDITOS.md`. Todas las imágenes llevan `alt`, `width` y `height`. Todas salvo el hero llevan `loading="lazy"`.
 
