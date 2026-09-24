@@ -278,3 +278,40 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* 7. Inicio ----------------------------------------------------------------- */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; place-items: center; min-height: 100vh; min-height: 100svh;
+  padding: calc(var(--header-h) + 2rem) var(--gutter) 6rem; text-align: center;
+}
+.hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(255, 253, 247, 0.78) 0%, rgba(255, 253, 247, 0.55) 45%, rgba(246, 240, 228, 0.85) 100%);
+}
+.hero__title { margin-right: -0.16em; font-size: var(--fs-hero); font-weight: 300; letter-spacing: 0.16em; line-height: 1; text-transform: uppercase; }
+.hero__rule { width: 80px; height: 1px; margin: 1.5rem auto; border: 0; background: var(--c-accent); }
+.hero__subtitle {
+  margin: 0 -0.36em 0 0;
+  font-size: clamp(0.72rem, 2vw, 0.9rem); font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--c-text-soft);
+}
+.hero .actions { margin-top: 2.75rem; }
+.hero__down {
+  position: absolute; bottom: 1.75rem; left: 50%;
+  display: grid; place-items: center; width: 46px; height: 46px;
+  border: 1px solid var(--c-text); border-radius: 50%; color: var(--c-text);
+  transform: translateX(-50%); transition: background-color 0.3s var(--ease);
+}
+.hero__down:hover { background: var(--c-line); }
+.hero__down svg { width: 18px; height: 18px; }
+
+/* 9. Tienda ----------------------------------------------------------------- */
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
+.chips a {
+  padding: 0.55rem 1.25rem; border: 1px solid var(--c-text-soft); border-radius: 999px;
+  font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none;
+  transition: background-color 0.3s var(--ease);
+}
+.chips a:hover { background: var(--c-line); }
