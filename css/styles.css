@@ -454,3 +454,6 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
 @media (max-width: 899.98px) {
   .site-footer { padding-bottom: 6rem; } /* deja sitio al botón flotante de WhatsApp */
 }
+
+.site-footer .hours { grid-template-columns: 1fr; gap: 0; }
+.site-footer .hours dd { margin-bottom: 0.6rem; }
