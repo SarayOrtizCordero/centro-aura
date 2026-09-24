@@ -2,7 +2,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const lib = require('../js/lib.js');
 
-const NBSP = ' ';
+const NBSP = ' ';
 
 test('formatPrice: precio fijo', () => {
   assert.equal(lib.formatPrice({ price: 30, from: false }), `30${NBSP}€`);

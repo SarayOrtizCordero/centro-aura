@@ -3,7 +3,7 @@
 (function (root) {
   'use strict';
 
-  const NBSP = ' ';
+  const NBSP = ' ';
 
   function formatEuros(amount) {
     return amount + NBSP + '€';
