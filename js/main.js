@@ -23,7 +23,8 @@
     });
     $$('[data-phone]').forEach((el) => {
       el.textContent = data.business.phoneDisplay;
-      if (el.tagName === 'A') el.href = 'tel:+' + data.business.phoneDigits;
+      const link = el.closest('a[href^="tel:"]');
+      if (link) link.href = 'tel:+' + data.business.phoneDigits;
     });
     $$('[data-hours]').forEach((dl) => {
       dl.replaceChildren(...lib.hoursToRows(data.hours).flatMap((row) => {

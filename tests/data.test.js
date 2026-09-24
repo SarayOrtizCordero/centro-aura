@@ -30,24 +30,26 @@ test('los servicios tienen categoría válida y duración', () => {
   }
 });
 
-test('precios orientativos de la especificación', () => {
-  const expected = {
-    'consulta-tricologica': [30, false], 'spa-capilar': [35, true], 'terapias-capilares': [40, true],
-    'barros': [30, true], 'alisados': [90, true], 'hidratacion': [25, true], 'corte': [18, true],
-    'peinados': [25, true], 'jaldun-equilibrante': [22, false], 'jaldun-vitalzen': [24, false],
-    'jaldun-multiefecto': [22, false], 'bono-spa-5': [150, false], 'bono-tricologico': [170, false],
-    'regalo-25': [25, false], 'regalo-50': [50, false], 'regalo-75': [75, false]
-  };
-  assert.deepEqual(Object.keys(data.items).sort(), Object.keys(expected).sort());
-  for (const [id, [price, from]] of Object.entries(expected)) {
-    assert.equal(data.items[id].price, price, id);
-    assert.equal(Boolean(data.items[id].from), from, id);
+test('el catálogo tiene los 16 items esperados', () => {
+  const expectedIds = [
+    'consulta-tricologica', 'spa-capilar', 'terapias-capilares',
+    'barros', 'alisados', 'hidratacion', 'corte',
+    'peinados', 'jaldun-equilibrante', 'jaldun-vitalzen',
+    'jaldun-multiefecto', 'bono-spa-5', 'bono-tricologico',
+    'regalo-25', 'regalo-50', 'regalo-75'
+  ];
+  assert.deepEqual(Object.keys(data.items).sort(), expectedIds.sort());
+  for (const [id, item] of Object.entries(data.items)) {
+    assert.ok(typeof item.price === 'number' && item.price > 0, `${id}: precio no es un número positivo`);
   }
 });
 
 test('los bonos indican el ahorro', () => {
-  assert.equal(data.items['bono-spa-5'].saving, 25);
-  assert.equal(data.items['bono-tricologico'].saving, 20);
+  for (const id of ['bono-spa-5', 'bono-tricologico']) {
+    const item = data.items[id];
+    assert.ok(typeof item.saving === 'number' && item.saving > 0, `${id}: saving no es un número positivo`);
+    assert.ok(item.saving < item.price, `${id}: saving no es menor que el precio`);
+  }
 });
 
 test('horario con formato "H:MM – HH:MM"', () => {

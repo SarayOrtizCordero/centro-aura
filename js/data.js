@@ -1,8 +1,11 @@
 /* Centro Aura — datos de negocio.
-   ÚNICO archivo que hay que tocar para cambiar precios, horario o contacto.
-   Precios y horario ORIENTATIVOS: pendientes de confirmar por Paula.
+   Los precios, duraciones, el horario y el teléfono que se muestran en la web
+   se leen de aquí. Precios y horario ORIENTATIVOS: pendientes de confirmar por Paula.
    Si cambias el horario, actualiza también el bloque JSON-LD de index.html
-   (npm test avisa si no coinciden). */
+   (npm test avisa si no coinciden).
+   Si cambias el teléfono, sustituye también "34610167764" en los enlaces de
+   respaldo del HTML (wa.me / tel:) y en el JSON-LD de index.html: este
+   archivo no controla esos enlaces fijos. */
 (function (root) {
   'use strict';
 
@@ -13,7 +16,6 @@
       phoneDisplay: '+34 610 16 77 64',
       phoneDigits: '34610167764',
       address: 'C/ Dr. Domingo Gallego, 3, 41730 Las Cabezas de San Juan (Sevilla)',
-      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan',
       instagram: 'https://www.instagram.com/centro__aura/'
     },
 
