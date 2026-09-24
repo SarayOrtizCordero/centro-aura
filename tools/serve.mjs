@@ -21,9 +21,15 @@ const TYPES = {
 };
 
 http.createServer(async (req, res) => {
-  const urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  } catch {
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }).end('400 · URL no válida');
+    return;
+  }
   let file = path.join(ROOT, urlPath);
-  if (!file.startsWith(ROOT)) {
+  if (file !== ROOT && !file.startsWith(ROOT + path.sep)) {
     res.writeHead(403).end();
     return;
   }
