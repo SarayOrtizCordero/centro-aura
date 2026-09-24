@@ -449,3 +449,8 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
 .field-error { min-height: 1.3em; margin: 0; color: var(--c-error); font-size: var(--fs-small); }
 .form .btn { justify-self: center; }
 .form-hint { margin: 0; color: var(--c-text-soft); font-size: var(--fs-small); text-align: center; }
+
+/* 11. Ajustes tras la verificación en navegador ------------------------------ */
+@media (max-width: 899.98px) {
+  .site-footer { padding-bottom: 6rem; } /* deja sitio al botón flotante de WhatsApp */
+}
