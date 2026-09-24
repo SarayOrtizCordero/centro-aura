@@ -242,24 +242,32 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
   .site-nav a:not(.btn) { font-family: var(--f-serif); font-size: 2.1rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; }
 }
 
-.site-footer { padding-block: clamp(3.5rem, 8vw, 5.5rem) 2rem; background: var(--c-bg-alt); font-size: var(--fs-small); }
-.footer-grid { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+/* Pie centrado: marca arriba, 3 bloques (Visítanos · Horario · Contacto) y navegación en línea */
+.site-footer { padding-block: clamp(3.5rem, 8vw, 5.5rem) 2rem; background: var(--c-bg-alt); font-size: var(--fs-small); text-align: center; }
+.footer-top {
+  display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem); border-bottom: 1px solid var(--c-line);
+}
+.site-footer .brand__name { font-size: 2.2rem; }
+.footer-claim { margin: 0; color: var(--c-text-soft); text-wrap: balance; }
+.footer-grid { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); padding-block: clamp(2.5rem, 5vw, 3.5rem); }
 .site-footer h2 {
   margin-bottom: 1rem;
   font-family: var(--f-sans); font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--c-text-soft);
 }
 .site-footer ul { display: grid; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
-.site-footer a:not(.brand):not(.link-arrow) { text-decoration: none; }
-.site-footer a:not(.brand):not(.link-arrow):hover { text-decoration: underline; text-decoration-color: var(--c-accent); text-underline-offset: 4px; }
+.site-footer a:not(.brand):not(.link-arrow):not(.btn) { text-decoration: none; }
+.site-footer a:not(.brand):not(.link-arrow):not(.btn):hover { text-decoration: underline; text-decoration-color: var(--c-accent); text-underline-offset: 4px; }
 .site-footer address { margin-bottom: 1rem; }
-.site-footer .hours { justify-content: start; gap: 0.2rem 1rem; margin-top: 0; }
-.footer-claim { max-width: 26ch; margin-top: 1.25rem; color: var(--c-text-soft); }
-.footer-bottom {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
-  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--c-line); color: var(--c-text-soft);
-}
-.footer-bottom p { margin: 0; }
+.site-footer .hours { grid-template-columns: 1fr; justify-content: center; gap: 0; margin: 0; text-align: center; }
+.site-footer .hours dd { margin-bottom: 0.6rem; }
+.footer-bottom { display: grid; justify-items: center; gap: 1.25rem; padding-top: 2rem; border-top: 1px solid var(--c-line); color: var(--c-text-soft); }
+.footer-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem clamp(1.1rem, 3vw, 2rem); }
+.footer-nav a { color: var(--c-text); font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
+.footer-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 1.5rem; width: 100%; }
+.footer-legal p { margin: 0; }
+@media (min-width: 700px) { .footer-legal { justify-content: space-between; } }
 
 .wa-float {
   position: fixed; right: 1rem; bottom: 1rem; z-index: 40;
@@ -454,6 +462,3 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
 @media (max-width: 899.98px) {
   .site-footer { padding-bottom: 6rem; } /* deja sitio al botón flotante de WhatsApp */
 }
-
-.site-footer .hours { grid-template-columns: 1fr; gap: 0; }
-.site-footer .hours dd { margin-bottom: 0.6rem; }

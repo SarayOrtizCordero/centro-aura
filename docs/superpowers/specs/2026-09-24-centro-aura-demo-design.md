@@ -107,7 +107,10 @@ docs/superpowers/       especificación y plan
   - En la portada es transparente sobre el hero y pasa a fondo `--c-bg` con sombra suave tras 40px de scroll.
   - En las páginas interiores tiene siempre fondo sólido.
   - En móvil (< 900px) se convierte en hamburguesa con menú a pantalla completa, bloqueo del scroll, cierre con Esc y `aria-expanded`.
-- **Pie:** logo, dirección, teléfono, horario, Instagram, "Cómo llegar" (Google Maps) y los enlaces "Aviso legal" y "Privacidad" (con `href="#"`; es una demo). Incluye "© 2026 Centro Aura".
+- **Pie (centrado, en tres niveles):**
+  - Arriba: marca, frase y botón "Reservar por WhatsApp".
+  - En medio: tres bloques iguales. **Visítanos** (dirección y "Cómo llegar"), **Horario** y **Contacto** (teléfono, WhatsApp e Instagram).
+  - Abajo: la navegación en una línea y, debajo, "© 2026 Centro Aura" junto a "Aviso legal · Privacidad" (con `href="#"`; es una demo). En pantallas de 700px o más, el © queda a la izquierda y los legales a la derecha; en móvil, todo centrado.
 - **WhatsApp flotante:** solo en móvil, abajo a la derecha, con `aria-label`.
 
 ## 5. Páginas

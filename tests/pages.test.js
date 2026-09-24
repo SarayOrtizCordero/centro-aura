@@ -78,4 +78,15 @@ for (const rel of pageFiles()) {
     assert.ok(tags.length >= 3, 'cabecera, pie y botón flotante');
     for (const tag of tags) assert.match(tag, /href="https:\/\/wa\.me\/34610167764"/, tag);
   });
+
+  test(`${rel}: pie centrado — marca, 3 bloques y navegación en línea`, () => {
+    const footer = html.slice(html.indexOf('<footer class="site-footer">'), html.indexOf('</footer>'));
+    const top = footer.slice(footer.indexOf('class="container footer-top"'), footer.indexOf('class="container footer-grid"'));
+    assert.match(top, /class="brand"/);
+    assert.match(top, /<a class="btn" href="https:\/\/wa\.me\/34610167764" data-wa="">Reservar por WhatsApp<\/a>/);
+    assert.deepEqual(all(footer, /<h2>([^<]+)<\/h2>/g), ['Visítanos', 'Horario', 'Contacto']);
+    const nav = footer.slice(footer.indexOf('<nav class="footer-nav"'), footer.indexOf('</nav>'));
+    assert.deepEqual(all(nav, /<a href="[^"]+">([^<]+)<\/a>/g), ['Inicio', 'Servicios', 'Tienda', 'Contacto']);
+    assert.match(footer, /<div class="footer-legal">/);
+  });
 }
