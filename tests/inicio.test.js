@@ -32,9 +32,19 @@ test('JSON-LD: HairSalon con teléfono e Instagram de data.js', () => {
   assert.equal(ld.address.postalCode, '41730');
 });
 
-test('JSON-LD: el horario coincide con data.js', () => {
+test('JSON-LD: el horario coincide con data.js (días y horas)', () => {
   const pad = (t) => t.trim().padStart(5, '0');
-  const fromData = new Set(data.hours.flatMap((h) => h.slots.map((s) => s.split('–').map(pad).join('-'))));
-  const fromLd = new Set(ld.openingHoursSpecification.map((o) => `${o.opens}-${o.closes}`));
+  const fromData = data.hours.flatMap((h) =>
+    h.schemaDays.flatMap((day) =>
+      h.slots.map((s) => {
+        const [opens, closes] = s.split('–').map(pad);
+        return `${day}|${opens}|${closes}`;
+      })
+    )
+  );
+  const fromLd = ld.openingHoursSpecification.flatMap((o) => {
+    const days = Array.isArray(o.dayOfWeek) ? o.dayOfWeek : [o.dayOfWeek];
+    return days.map((day) => `${day}|${o.opens}|${o.closes}`);
+  });
   assert.deepEqual([...fromLd].sort(), [...fromData].sort());
 });

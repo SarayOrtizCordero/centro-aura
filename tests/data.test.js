@@ -56,3 +56,11 @@ test('horario con formato "H:MM – HH:MM"', () => {
     for (const slot of h.slots) assert.match(slot, /^\d{1,2}:\d{2} – \d{2}:\d{2}$/, slot);
   }
 });
+
+test('cada horario tiene días de schema.org válidos', () => {
+  const VALID_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  for (const h of data.hours) {
+    assert.ok(Array.isArray(h.schemaDays) && h.schemaDays.length > 0, `${h.days}: falta schemaDays`);
+    for (const day of h.schemaDays) assert.ok(VALID_DAYS.includes(day), `${h.days}: día inválido "${day}"`);
+  }
+});

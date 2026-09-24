@@ -18,9 +18,9 @@
     },
 
     hours: [
-      { days: 'Lunes – Viernes', slots: ['9:30 – 14:00', '17:00 – 20:30'] },
-      { days: 'Sábado', slots: ['9:30 – 14:00'] },
-      { days: 'Domingo', slots: [] }
+      { days: 'Lunes – Viernes', schemaDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], slots: ['9:30 – 14:00', '17:00 – 20:30'] },
+      { days: 'Sábado', schemaDays: ['Saturday'], slots: ['9:30 – 14:00'] },
+      { days: 'Domingo', schemaDays: ['Sunday'], slots: [] }
     ],
 
     categories: [
