@@ -147,17 +147,23 @@
       });
     });
 
-    const openFromHash = () => {
-      const id = decodeURIComponent(window.location.hash.slice(1));
+    const openFromHash = (isInitial) => {
+      let id = '';
+      try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        id = '';
+      }
       const category = lib.categoryOf(data.items, id);
       const tab = tabs.find((t) => t.dataset.category === category);
+      if (!tab && !isInitial) return;
       select(tab || tabs[0], false);
       if (tab) document.getElementById(id).scrollIntoView({ block: 'start' });
     };
 
     tablist.hidden = false;
-    openFromHash();
-    window.addEventListener('hashchange', openFromHash);
+    openFromHash(true);
+    window.addEventListener('hashchange', () => openFromHash(false));
   }
 
   /* Formulario de Contacto: valida y abre WhatsApp con el mensaje compuesto.
