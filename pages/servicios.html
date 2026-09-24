@@ -55,7 +55,173 @@
       <p>Salud capilar, tratamientos y peluquería. Todo empieza por escucharte y mirar tu cuero cabelludo.</p>
     </section>
 
-    <!-- secciones-servicios -->
+    <section class="section" aria-label="Carta de servicios">
+      <div class="container">
+        <div class="tabs" role="tablist" aria-label="Categorías de servicios" hidden>
+          <button class="tab" type="button" role="tab" id="tab-salud" aria-controls="panel-salud" aria-selected="true" data-category="salud">Salud capilar</button>
+          <button class="tab" type="button" role="tab" id="tab-tratamientos" aria-controls="panel-tratamientos" aria-selected="false" tabindex="-1" data-category="tratamientos">Tratamientos</button>
+          <button class="tab" type="button" role="tab" id="tab-peluqueria" aria-controls="panel-peluqueria" aria-selected="false" tabindex="-1" data-category="peluqueria">Peluquería</button>
+        </div>
+
+        <div class="categories">
+          <div class="category" id="panel-salud" role="tabpanel" aria-labelledby="tab-salud">
+            <div class="category__media reveal">
+              <img src="../assets/img/servicio-salud.webp" alt="Masaje en el cuero cabelludo con la clienta relajada" width="1000" height="1250" loading="lazy">
+            </div>
+            <div>
+              <h2 class="category__title">Salud capilar</h2>
+              <p class="category__intro">El corazón de Aura: cuidar el cabello desde la raíz.</p>
+              <ul class="service-list" role="list">
+                <li class="service" id="consulta-tricologica">
+                  <div>
+                    <h3>Consulta tricológica</h3>
+                    <p>Analizamos tu cuero cabelludo con microcámara para ver qué pasa de verdad: grasa, caspa, sensibilidad o caída. Sales con un diagnóstico claro y un plan pensado para ti.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="consulta-tricologica">45 min</span>
+                    <span class="price" data-price="consulta-tricologica">30 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Consulta tricológica">Reservar</a>
+                  </div>
+                </li>
+                <li class="service" id="spa-capilar">
+                  <div>
+                    <h3>Spa capilar</h3>
+                    <p>Limpieza profunda, exfoliación suave, masaje y mascarilla en un ritual para desconectar. Tu cuero cabelludo respira y tu pelo lo nota desde el primer día.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="spa-capilar">60 min</span>
+                    <span class="price" data-price="spa-capilar">desde 35 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Spa capilar">Reservar</a>
+                  </div>
+                </li>
+                <li class="service" id="terapias-capilares">
+                  <div>
+                    <h3>Terapias capilares</h3>
+                    <p>Tratamientos específicos para la caída, el exceso de grasa, la caspa o la sensibilidad, con activos naturales y sesiones de seguimiento.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="terapias-capilares">60 min</span>
+                    <span class="price" data-price="terapias-capilares">desde 40 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Terapias capilares">Reservar</a>
+                  </div>
+                </li>
+                <li class="service" id="barros">
+                  <div>
+                    <h3>Barros naturales</h3>
+                    <p>Arcillas y barros que depuran, calman y equilibran el cuero cabelludo. Ideales para pelo graso o con tendencia a la caspa.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="barros">45 min</span>
+                    <span class="price" data-price="barros">desde 30 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Barros naturales">Reservar</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="category" id="panel-tratamientos" role="tabpanel" aria-labelledby="tab-tratamientos">
+            <div class="category__media reveal">
+              <img src="../assets/img/servicio-tratamientos.webp" alt="Melena larga, lisa y brillante vista de espaldas" width="1000" height="1250" loading="lazy">
+            </div>
+            <div>
+              <h2 class="category__title">Tratamientos</h2>
+              <p class="category__intro">Para que tu pelo recupere suavidad, brillo y fuerza.</p>
+              <ul class="service-list" role="list">
+                <li class="service" id="alisados">
+                  <div>
+                    <h3>Alisados</h3>
+                    <p>Alisados que respetan la fibra y dejan el pelo suave, brillante y fácil de peinar durante semanas.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="alisados">2–3 h</span>
+                    <span class="price" data-price="alisados">desde 90 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Alisados">Reservar</a>
+                  </div>
+                </li>
+                <li class="service" id="hidratacion">
+                  <div>
+                    <h3>Hidratación y reparación</h3>
+                    <p>Recupera la hidratación y la fuerza del pelo seco, dañado o castigado por el tinte y el calor.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="hidratacion">45 min</span>
+                    <span class="price" data-price="hidratacion">desde 25 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Hidratación y reparación">Reservar</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="category" id="panel-peluqueria" role="tabpanel" aria-labelledby="tab-peluqueria">
+            <div class="category__media reveal">
+              <img src="../assets/img/servicio-peluqueria.webp" alt="Peluquera peinando a una clienta en el salón" width="1000" height="1250" loading="lazy">
+            </div>
+            <div>
+              <h2 class="category__title">Peluquería</h2>
+              <p class="category__intro">Cortes y peinados con el mismo mimo que todo lo demás.</p>
+              <ul class="service-list" role="list">
+                <li class="service" id="corte">
+                  <div>
+                    <h3>Corte y peinado</h3>
+                    <p>Un corte que tiene en cuenta tu tipo de pelo, tu día a día y cómo te gusta llevarlo.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="corte">45 min</span>
+                    <span class="price" data-price="corte">desde 18 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Corte y peinado">Reservar</a>
+                  </div>
+                </li>
+                <li class="service" id="peinados">
+                  <div>
+                    <h3>Peinados y recogidos</h3>
+                    <p>Ondas, recogidos y peinados para bodas, eventos o para sentirte especial un día cualquiera.</p>
+                  </div>
+                  <div class="service__meta">
+                    <span class="service__duration" data-duration="peinados">60 min</span>
+                    <span class="price" data-price="peinados">desde 25 €</span>
+                    <a class="btn" href="https://wa.me/34610167764" data-wa="Peinados y recogidos">Reservar</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="consulta-title">
+      <div class="container section-head reveal">
+        <img class="lotus" src="../assets/icons/loto.svg" alt="" width="64" height="40">
+        <span class="eyebrow">Paso a paso</span>
+        <h2 class="title" id="consulta-title">¿Cómo es una consulta tricológica?</h2>
+      </div>
+      <ol class="container steps">
+        <li class="step reveal">
+          <h3>Diagnóstico con microcámara</h3>
+          <p>Vemos tu cuero cabelludo ampliado en pantalla y te explico lo que encontramos.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Plan personalizado</h3>
+          <p>Elegimos el tratamiento en cabina y los productos para casa según lo que necesita tu piel.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Seguimiento</h3>
+          <p>Revisamos cómo evoluciona y ajustamos el plan hasta ver resultados.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="dudas-title">
+      <div class="container section-head reveal">
+        <h2 class="title" id="dudas-title">¿Dudas sobre qué necesita tu cabello?</h2>
+        <p>Cuéntamelo y lo vemos, sin compromiso.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="contacto.html#formulario">Escríbeme</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">

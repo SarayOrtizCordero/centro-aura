@@ -113,9 +113,56 @@
     items.forEach((item) => observer.observe(item));
   }
 
+  /* Pestañas de Servicios: sin JS se ven las tres categorías apiladas */
+  function initTabs() {
+    const tablist = document.querySelector('[role="tablist"]');
+    if (!tablist) return;
+    const tabs = $$('[role="tab"]', tablist);
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
+
+    const select = (tab, moveFocus) => {
+      tabs.forEach((t, i) => {
+        const active = t === tab;
+        t.setAttribute('aria-selected', String(active));
+        t.tabIndex = active ? 0 : -1;
+        panels[i].hidden = !active;
+      });
+      if (moveFocus) tab.focus();
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab, false));
+      tab.addEventListener('keydown', (event) => {
+        const last = tabs.length - 1;
+        const target = {
+          ArrowRight: tabs[i === last ? 0 : i + 1],
+          ArrowLeft: tabs[i === 0 ? last : i - 1],
+          Home: tabs[0],
+          End: tabs[last]
+        }[event.key];
+        if (!target) return;
+        event.preventDefault();
+        select(target, true);
+      });
+    });
+
+    const openFromHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      const category = lib.categoryOf(data.items, id);
+      const tab = tabs.find((t) => t.dataset.category === category);
+      select(tab || tabs[0], false);
+      if (tab) document.getElementById(id).scrollIntoView({ block: 'start' });
+    };
+
+    tablist.hidden = false;
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+  }
+
   fillData();
   wireWhatsApp();
   initHeader();
   initMenu();
+  initTabs();
   initReveal();
 })();
