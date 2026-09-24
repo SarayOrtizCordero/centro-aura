@@ -1,0 +1,11 @@
+{
+  "name": "centro-aura-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo web de Centro Aura — Spa Capilar · Tricología",
+  "scripts": {
+    "test": "node --test",
+    "serve": "node tools/serve.mjs",
+    "images": "node tools/fetch-images.mjs"
+  }
+}
