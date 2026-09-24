@@ -17,7 +17,7 @@
   --c-text-soft: #6B6153;
   --c-border: #8C7F6D;
   --c-error: #9B3D2E;
-  --c-overlay: rgba(46, 38, 28, 0.4);
+  --c-overlay: rgba(46, 38, 28, 0.5);
 
   --f-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --f-sans: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -288,14 +288,14 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
 .hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(255, 253, 247, 0.78) 0%, rgba(255, 253, 247, 0.55) 45%, rgba(246, 240, 228, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(255, 253, 247, 0.78) 0%, rgba(255, 253, 247, 0.74) 45%, rgba(246, 240, 228, 0.85) 100%);
 }
 .hero__title { margin-right: -0.16em; font-size: var(--fs-hero); font-weight: 300; letter-spacing: 0.16em; line-height: 1; text-transform: uppercase; }
 .hero__rule { width: 80px; height: 1px; margin: 1.5rem auto; border: 0; background: var(--c-accent); }
 .hero__subtitle {
   margin: 0 -0.36em 0 0;
   font-size: clamp(0.72rem, 2vw, 0.9rem); font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase;
-  color: var(--c-text-soft);
+  color: var(--c-text);
 }
 .hero .actions { margin-top: 2.75rem; }
 .hero__down {
@@ -327,7 +327,7 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
 .feature-card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--c-overlay); transition: background-color 0.4s var(--ease); }
 .feature-card h3 { margin-bottom: 1.25rem; color: var(--c-bg); font-size: clamp(1.9rem, 3.2vw, 2.4rem); text-shadow: 0 1px 12px rgba(46, 38, 28, 0.35); }
 .feature-card:hover img { transform: scale(1.05); }
-.feature-card:hover::after { background: rgba(46, 38, 28, 0.5); }
+.feature-card:hover::after { background: rgba(46, 38, 28, 0.58); }
 .feature-card:hover .btn--light { background: var(--c-bg); border-color: var(--c-bg); color: var(--c-text); }
 
 .about { display: grid; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; text-align: center; }
