@@ -315,3 +315,32 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
   transition: background-color 0.3s var(--ease);
 }
 .chips a:hover { background: var(--c-line); }
+
+/* 7b. Inicio: destacados y Paula -------------------------------------------- */
+.feature-grid { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.feature-card {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; place-items: center; aspect-ratio: 4 / 5; padding: 1.5rem;
+  color: var(--c-bg); text-align: center; text-decoration: none;
+}
+.feature-card img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.feature-card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--c-overlay); transition: background-color 0.4s var(--ease); }
+.feature-card h3 { margin-bottom: 1.25rem; color: var(--c-bg); font-size: clamp(1.9rem, 3.2vw, 2.4rem); text-shadow: 0 1px 12px rgba(46, 38, 28, 0.35); }
+.feature-card:hover img { transform: scale(1.05); }
+.feature-card:hover::after { background: rgba(46, 38, 28, 0.5); }
+.feature-card:hover .btn--light { background: var(--c-bg); border-color: var(--c-bg); color: var(--c-text); }
+
+.about { display: grid; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; text-align: center; }
+.about__portrait {
+  width: min(340px, 72vw); aspect-ratio: 1; margin-inline: auto; overflow: hidden; border-radius: 50%;
+  background: var(--c-line); box-shadow: 0 0 0 12px var(--c-bg-alt), 0 0 0 13px var(--c-line);
+}
+.about__portrait img { width: 100%; height: 100%; object-fit: cover; }
+/* Sin foto de Paula todavía: círculo en dorado suave de la paleta */
+.about__portrait--placeholder { background: radial-gradient(circle at 35% 30%, #E4D98A 0%, var(--c-accent) 70%); }
+.about__text p { max-width: 54ch; margin-inline: auto; }
+.about__text .link-arrow { margin-top: 1.5rem; }
+@media (min-width: 800px) {
+  .about { grid-template-columns: minmax(260px, 380px) 1fr; text-align: left; }
+  .about__text p { margin-inline: 0; }
+}
