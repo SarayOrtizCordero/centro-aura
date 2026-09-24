@@ -1,13 +1,275 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro Aura · Spa capilar y tricología en Las Cabezas de San Juan</title>
+  <meta name="description" content="Peluquería, spa capilar, consulta tricológica y terapias capilares en Las Cabezas de San Juan (Sevilla). Cosmética natural Jaldún, bonos y tarjetas regalo.">
+  <link rel="canonical" href="./">
+  <meta name="theme-color" content="#FFFDF7">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Centro Aura">
+  <meta property="og:title" content="Centro Aura · Spa Capilar · Tricología">
+  <meta property="og:description" content="Cuidamos tu cabello desde la raíz. Peluquería, spa capilar y tricología en Las Cabezas de San Juan.">
+  <meta property="og:image" content="assets/img/hero-salon.webp">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/lib.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Centro Aura — Spa Capilar · Tricología",
+    "description": "Peluquería, spa capilar, consulta tricológica y terapias capilares con cosmética natural Jaldún.",
+    "image": "assets/img/hero-salon.webp",
+    "telephone": "+34610167764",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C/ Dr. Domingo Gallego, 3",
+      "addressLocality": "Las Cabezas de San Juan",
+      "addressRegion": "Sevilla",
+      "postalCode": "41730",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 36.9853, "longitude": -5.9395 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "17:00", "closes": "20:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "14:00" }
+    ],
+    "sameAs": ["https://www.instagram.com/centro__aura/"]
+  }
+  </script>
 </head>
 <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header site-header--overlay">
+    <div class="container site-header__inner">
+      <a class="brand" href="./" aria-label="Centro Aura, inicio">
+        <span class="brand__name">AURA</span>
+        <span class="brand__rule" aria-hidden="true"></span>
+        <span class="brand__tag">Spa Capilar · Tricología</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú">
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="site-menu" aria-label="Principal">
+        <ul>
+          <li><a href="./" aria-current="page">Inicio</a></li>
+          <li><a href="pages/servicios.html">Servicios</a></li>
+          <li><a href="pages/tienda.html">Tienda</a></li>
+          <li><a href="pages/contacto.html">Contacto</a></li>
+        </ul>
+        <a class="btn" href="https://wa.me/34610167764" data-wa="">Reservar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero__bg" src="assets/img/hero-salon.webp" alt="" width="2000" height="1333" fetchpriority="high">
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-title"><span class="visually-hidden">Centro </span>Aura</h1>
+        <hr class="hero__rule">
+        <p class="hero__subtitle">Spa Capilar · Tricología</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="https://wa.me/34610167764" data-wa="">Reservar cita</a>
+        </div>
+      </div>
+      <a class="hero__down" href="#presentacion" aria-label="Bajar a la presentación">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </section>
+
+    <section class="section" id="presentacion" aria-labelledby="intro-title">
+      <div class="container section-head reveal">
+        <img class="lotus" src="assets/icons/loto.svg" alt="" width="64" height="40">
+        <span class="eyebrow">Peluquería · Salud capilar</span>
+        <h2 class="title" id="intro-title">Centro Aura</h2>
+        <p class="lead">En Aura cuidamos el cabello desde donde nace: el cuero cabelludo. Unimos la peluquería de siempre con la tricología y los rituales de spa capilar para que tu pelo, además de bonito, esté sano.</p>
+        <p class="quote">«La energía del interior y la que envuelve al cuerpo físico.»</p>
+      </div>
+      <div class="container feature-grid">
+        <a class="feature-card reveal" href="pages/servicios.html#spa-capilar">
+          <img src="assets/img/destacado-spa.webp" alt="Masaje relajante en el cuero cabelludo durante un spa capilar" width="900" height="1125" loading="lazy">
+          <div>
+            <h3>Spa Capilar</h3>
+            <span class="btn btn--light">Ver más</span>
+          </div>
+        </a>
+        <a class="feature-card reveal" href="pages/servicios.html#consulta-tricologica">
+          <img src="assets/img/destacado-tricologia.webp" alt="Primer plano del cabello, como se ve con la microcámara en la consulta" width="900" height="1125" loading="lazy">
+          <div>
+            <h3>Consulta Tricológica</h3>
+            <span class="btn btn--light">Ver más</span>
+          </div>
+        </a>
+        <a class="feature-card reveal" href="pages/servicios.html#terapias-capilares">
+          <img src="assets/img/destacado-terapias.webp" alt="Terapia capilar con masaje suave en la cabeza" width="900" height="1125" loading="lazy">
+          <div>
+            <h3>Terapias Capilares</h3>
+            <span class="btn btn--light">Ver más</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="paula-title">
+      <div class="container about">
+        <!-- Espacio reservado para la foto de Paula: sustituir el div vacío por una etiqueta img cuando la foto esté disponible -->
+        <div class="about__portrait about__portrait--placeholder reveal" aria-hidden="true"></div>
+        <div class="about__text reveal">
+          <span class="eyebrow">Peluquera titulada · Fundadora</span>
+          <h2 class="title" id="paula-title">Hola, soy Paula</h2>
+          <p>Soy peluquera titulada y me especialicé en tricología porque un buen corte no basta si el cuero cabelludo no está sano. Aura nace de esa idea: un espacio tranquilo donde miramos tu pelo con calma, entendemos qué necesita y lo tratamos con cosmética natural.</p>
+          <p>Aquí no hay prisas. Cada visita empieza escuchándote.</p>
+          <a class="link-arrow" href="https://www.instagram.com/centro__aura/" target="_blank" rel="noopener">Sígueme en Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="jaldun-title">
+      <div class="container section-head reveal">
+        <img class="lotus" src="assets/icons/loto.svg" alt="" width="64" height="40">
+        <span class="eyebrow">Cosmética natural</span>
+        <h2 class="title" id="jaldun-title">Salud capilar Jaldún</h2>
+        <p>Trabajamos con Jaldún, fitoterapia capilar que devuelve al cuero cabelludo su equilibrio natural. Después de la consulta te recomendamos el que necesitas.</p>
+      </div>
+      <ul class="container product-grid" role="list">
+        <li class="product-card reveal">
+          <div class="product-card__visual" aria-hidden="true">
+            <div class="bottle"><span class="bottle__brand">Jaldún</span><span class="bottle__name">Equilibrante</span></div>
+          </div>
+          <div class="product-card__body">
+            <h3>Champú Equilibrante</h3>
+            <p>Caspa y exceso de grasa</p>
+          </div>
+        </li>
+        <li class="product-card reveal">
+          <div class="product-card__visual" aria-hidden="true">
+            <div class="bottle"><span class="bottle__brand">Jaldún</span><span class="bottle__name">Vitalzen</span></div>
+          </div>
+          <div class="product-card__body">
+            <h3>Champú Vitalzen Fortificante</h3>
+            <p>Caída del cabello</p>
+          </div>
+        </li>
+        <li class="product-card reveal">
+          <div class="product-card__visual" aria-hidden="true">
+            <div class="bottle"><span class="bottle__brand">Jaldún</span><span class="bottle__name">Multiefecto</span></div>
+          </div>
+          <div class="product-card__body">
+            <h3>Champú Multiefecto Regulador</h3>
+            <p>Cuero cabelludo sensible</p>
+          </div>
+        </li>
+      </ul>
+      <div class="container text-center mt-lg">
+        <a class="btn" href="pages/tienda.html">Ver tienda</a>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-labelledby="regalo-title">
+      <div class="container split">
+        <div class="split__media reveal">
+          <img src="assets/img/tarjeta-regalo.webp" alt="Flores secas sobre un paño de lino claro" width="1200" height="900" loading="lazy">
+        </div>
+        <div class="split__text reveal">
+          <img class="lotus" src="assets/icons/loto.svg" alt="" width="64" height="40">
+          <span class="eyebrow">Un detalle con sentido</span>
+          <h2 class="title" id="regalo-title">Regala Aura</h2>
+          <p>Una tarjeta regalo para un spa capilar, un tratamiento o el importe que prefieras. La preparamos a mano y la recoges en el salón.</p>
+          <div class="actions">
+            <a class="btn btn--solid" href="https://wa.me/34610167764" data-wa="Tarjeta regalo" data-wa-kind="producto">Pedir tarjeta regalo</a>
+            <a class="link-arrow" href="pages/tienda.html#tarjetas-regalo">Ver importes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="visita-title">
+      <div class="container split split--reverse">
+        <div class="split__media reveal">
+          <iframe src="https://www.google.com/maps?q=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan&amp;output=embed" title="Mapa: Centro Aura en C/ Dr. Domingo Gallego, 3, Las Cabezas de San Juan" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="split__text reveal">
+          <img class="lotus" src="assets/icons/loto.svg" alt="" width="64" height="40">
+          <span class="eyebrow">Visítanos</span>
+          <h2 class="title" id="visita-title">Te esperamos en Las Cabezas</h2>
+          <address>C/ Dr. Domingo Gallego, 3<br>41730 Las Cabezas de San Juan, Sevilla</address>
+          <dl class="hours" data-hours>
+            <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
+            <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+            <dt>Domingo</dt><dd>Cerrado</dd>
+          </dl>
+          <div class="actions">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan" target="_blank" rel="noopener">Cómo llegar</a>
+            <a class="link-arrow" href="tel:+34610167764" data-phone>+34 610 16 77 64</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="brand" href="./" aria-label="Centro Aura, inicio">
+        <span class="brand__name">AURA</span>
+        <span class="brand__rule" aria-hidden="true"></span>
+        <span class="brand__tag">Spa Capilar · Tricología</span>
+      </a>
+      <p class="footer-claim">Peluquería y salud capilar en Las Cabezas de San Juan.</p>
+      <a class="btn" href="https://wa.me/34610167764" data-wa="">Reservar por WhatsApp</a>
+    </div>
+    <div class="container footer-grid">
+      <div>
+        <h2>Visítanos</h2>
+        <address>C/ Dr. Domingo Gallego, 3<br>41730 Las Cabezas de San Juan<br>Sevilla</address>
+        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=C%2F%20Dr.%20Domingo%20Gallego%203%2C%2041730%20Las%20Cabezas%20de%20San%20Juan" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div>
+        <h2>Horario</h2>
+        <dl class="hours" data-hours>
+          <dt>Lunes – Viernes</dt><dd>9:30 – 14:00 · 17:00 – 20:30</dd>
+          <dt>Sábado</dt><dd>9:30 – 14:00</dd>
+          <dt>Domingo</dt><dd>Cerrado</dd>
+        </dl>
+      </div>
+      <div>
+        <h2>Contacto</h2>
+        <ul>
+          <li><a href="tel:+34610167764" data-phone>+34 610 16 77 64</a></li>
+          <li><a href="https://wa.me/34610167764" data-wa="">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/centro__aura/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <nav class="footer-nav" aria-label="Pie de página">
+        <ul>
+          <li><a href="./">Inicio</a></li>
+          <li><a href="pages/servicios.html">Servicios</a></li>
+          <li><a href="pages/tienda.html">Tienda</a></li>
+          <li><a href="pages/contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="footer-legal">
+        <p>© 2026 Centro Aura</p>
+        <p><a href="#">Aviso legal</a> · <a href="#">Privacidad</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34610167764" data-wa="" aria-label="Reservar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </a>
 </body>
 </html>
