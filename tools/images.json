@@ -1,0 +1,11 @@
+[
+  { "name": "hero-salon",            "id": "1706629503650-cade709d15e3", "width": 2000, "height": 1333 },
+  { "name": "destacado-spa",         "id": "1757066033634-bbbf874ce525", "width": 900,  "height": 1125 },
+  { "name": "destacado-tricologia",  "id": "1733685373279-a10ac3f255e7", "width": 900,  "height": 1125 },
+  { "name": "destacado-terapias",    "id": "1706795034830-de41aee06afa", "width": 900,  "height": 1125 },
+  { "name": "tarjeta-regalo",        "id": "1687617788315-cf8bfd1592c3", "width": 1200, "height": 900 },
+  { "name": "textura-lino",          "id": "1705951320394-eda5d939d0ac", "width": 2000, "height": 900 },
+  { "name": "servicio-salud",        "id": "1757066033606-b9552acb2dd0", "width": 1000, "height": 1250 },
+  { "name": "servicio-tratamientos", "id": "1573807195700-9e9db54988f6", "width": 1000, "height": 1250 },
+  { "name": "servicio-peluqueria",   "id": "1634449571017-5fecfd26ad76", "width": 1000, "height": 1250 }
+]
