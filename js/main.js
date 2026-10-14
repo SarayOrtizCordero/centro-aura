@@ -56,7 +56,7 @@
     window.addEventListener('scroll', update, { passive: true });
   }
 
-  /* Menú móvil a pantalla completa: Esc para cerrar y foco atrapado */
+  /* Menú móvil desplegable: Esc o un toque fuera para cerrar, y foco atrapado */
   function initMenu() {
     const toggle = document.querySelector('.nav-toggle');
     const menu = document.getElementById('site-menu');
@@ -73,6 +73,9 @@
     toggle.addEventListener('click', () => setOpen(!isOpen()));
     menu.addEventListener('click', (event) => {
       if (event.target.closest('a') && isOpen()) setOpen(false);
+    });
+    document.addEventListener('click', (event) => {
+      if (isOpen() && !event.target.closest('.site-header')) setOpen(false);
     });
     document.addEventListener('keydown', (event) => {
       if (!isOpen()) return;
@@ -202,8 +205,27 @@
     });
   }
 
+  /* Mapas de Google: no se contacta con Google hasta que el visitante pulsa el
+     botón. Sin JS queda el enlace "Abrir en Google Maps". */
+  function initMaps() {
+    $$('.map[data-map-src]').forEach((map) => {
+      const button = map.querySelector('[data-map-load]');
+      if (!button) return;
+      button.hidden = false;
+      button.addEventListener('click', () => {
+        const frame = document.createElement('iframe');
+        frame.src = map.dataset.mapSrc;
+        frame.title = map.dataset.mapTitle;
+        frame.referrerPolicy = 'no-referrer-when-downgrade';
+        map.replaceChildren(frame);
+        frame.focus();
+      });
+    });
+  }
+
   fillData();
   wireWhatsApp();
+  initMaps();
   initHeader();
   initMenu();
   initTabs();

@@ -6,9 +6,14 @@ const { ROOT, read, pageFiles, webpSize } = require('./helpers.js');
 const data = require('../js/data.js');
 
 const all = (html, re) => [...html.matchAll(re)].map((m) => m[1]);
-const EXPECTED_PAGES = ['index.html', 'pages/contacto.html', 'pages/servicios.html', 'pages/tienda.html'];
+const EXPECTED_PAGES = [
+  'index.html', 'pages/aviso-legal.html', 'pages/contacto.html',
+  'pages/privacidad.html', 'pages/servicios.html', 'pages/tienda.html'
+];
+// Páginas que no cuelgan del menú principal: no llevan aria-current
+const LEGAL = ['pages/aviso-legal.html', 'pages/privacidad.html'];
 
-test('existen las 4 páginas', () => {
+test('existen las 6 páginas', () => {
   assert.deepEqual([...pageFiles()].sort(), [...EXPECTED_PAGES].sort());
 });
 
@@ -23,7 +28,24 @@ for (const rel of pageFiles()) {
     assert.match(html, /<link rel="canonical" href="[^"]+">/);
     assert.match(html, /<main id="contenido">/);
     assert.match(html, /<a class="skip-link" href="#contenido">/);
-    assert.match(html, /aria-current="page"/);
+    if (!LEGAL.includes(rel)) assert.match(html, /aria-current="page"/);
+  });
+
+  test(`${rel}: canonical, og:url y og:image son absolutos y coinciden con la ruta`, () => {
+    const urlPath = rel === 'index.html' ? '/' : '/' + rel;
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)">/)[1];
+    assert.match(canonical, /^https:\/\/[^/]+/);
+    assert.ok(canonical.endsWith(urlPath), canonical);
+    assert.equal(html.match(/<meta property="og:url" content="([^"]+)">/)[1], canonical);
+    const image = html.match(/<meta property="og:image" content="([^"]+)">/)[1];
+    assert.match(image, /^https:\/\/[^/]+\/assets\/img\/[\w-]+\.webp$/);
+    assert.ok(fs.existsSync(path.join(ROOT, image.replace(/^https:\/\/[^/]+\//, ''))), image);
+  });
+
+  test(`${rel}: tipografías propias y sin iframes de arranque`, () => {
+    assert.ok(!/fonts\.(googleapis|gstatic)\.com/.test(html), 'carga Google Fonts');
+    assert.ok(!/<iframe\b/.test(html), 'incrusta un iframe sin que el visitante lo pida');
+    assert.match(html, /<link rel="stylesheet" href="(?:\.\.\/)?css\/fonts\.css">/);
   });
 
   test(`${rel}: scripts en orden data → lib → main`, () => {
@@ -79,14 +101,23 @@ for (const rel of pageFiles()) {
     for (const tag of tags) assert.match(tag, /href="https:\/\/wa\.me\/34610167764"/, tag);
   });
 
-  test(`${rel}: pie centrado — marca, 3 bloques y navegación en línea`, () => {
+  test(`${rel}: pie centrado — marca, 3 bloques y enlaces legales`, () => {
     const footer = html.slice(html.indexOf('<footer class="site-footer">'), html.indexOf('</footer>'));
     const top = footer.slice(footer.indexOf('class="container footer-top"'), footer.indexOf('class="container footer-grid"'));
     assert.match(top, /class="brand"/);
     assert.match(top, /<a class="btn" href="https:\/\/wa\.me\/34610167764" data-wa="">Reservar por WhatsApp<\/a>/);
     assert.deepEqual(all(footer, /<h2>([^<]+)<\/h2>/g), ['Visítanos', 'Horario', 'Contacto']);
-    const nav = footer.slice(footer.indexOf('<nav class="footer-nav"'), footer.indexOf('</nav>'));
-    assert.deepEqual(all(nav, /<a href="[^"]+">([^<]+)<\/a>/g), ['Inicio', 'Servicios', 'Tienda', 'Contacto']);
-    assert.match(footer, /<div class="footer-legal">/);
+    assert.ok(!footer.includes('footer-nav'), 'el pie ya no lleva navegación');
+    const legal = footer.slice(footer.indexOf('<div class="footer-legal">'));
+    assert.deepEqual(all(legal, /<a href="[^"]+">([^<]+)<\/a>/g), ['Aviso legal', 'Privacidad y cookies']);
+    assert.ok(!/href="#"/.test(footer), 'enlace vacío en el pie');
+  });
+}
+
+// Un preload de fuentes lleva crossorigin: por file:// el navegador lo bloquea por CORS
+// y, además, avisa de que no se usa. Con font-display: swap no hace falta.
+for (const rel of [...pageFiles(), '404.html']) {
+  test(`${rel}: sin preload de fuentes (da errores de CORS al abrir el archivo en local)`, () => {
+    assert.ok(!/rel="preload"/.test(read(rel)));
   });
 }

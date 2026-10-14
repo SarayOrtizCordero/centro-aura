@@ -12,3 +12,7 @@ Son provisionales: se sustituirán por fotos reales de Centro Aura manteniendo e
 - `servicio-salud.webp` — https://images.unsplash.com/photo-1757066033606-b9552acb2dd0
 - `servicio-tratamientos.webp` — https://images.unsplash.com/photo-1573807195700-9e9db54988f6
 - `servicio-peluqueria.webp` — https://images.unsplash.com/photo-1580618672591-eb180b1a973f
+
+## Fotos de producto
+
+`champu-equilibrante.webp`, `champu-vitalzen.webp` (Vitalzen) y `champu-multiefecto.webp`: fotos de los champús Jaldún aportadas para la demo. Confirmar el permiso de uso antes de publicar.

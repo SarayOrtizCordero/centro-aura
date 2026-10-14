@@ -22,13 +22,48 @@ Los precios, duraciones y el horario están en **`js/data.js`**. Cambia el valor
 
 ## Cambiar las fotos
 
-Las fotos actuales son de stock (Unsplash) y provisionales, salvo el retrato de Paula: hoy es un `div` de color de relleno en `index.html` (hay un comentario HTML ahí mismo que lo explica). Para poner las reales:
+Las fotos del salón y de los servicios son de stock (Unsplash) y provisionales. Las de los tres champús Jaldún (`champu-*.webp`) son fotos de producto. Para poner las reales:
 
-1. Guarda la foto en `assets/img/` con **el mismo nombre** (por ejemplo, `paula-retrato.webp`) y en formato WebP.
-   - Para el retrato de Paula: guarda `assets/img/paula-retrato.webp` (640×640) y sustituye el `div` de relleno por un `<img src="assets/img/paula-retrato.webp" width="640" height="640" loading="lazy" alt="…">` con un `alt` descriptivo.
+1. Guarda la foto en `assets/img/` con **el mismo nombre** y en formato WebP.
 2. Si la nueva foto tiene otro tamaño, actualiza sus atributos `width` y `height` en el HTML y su tamaño en `tools/images.json`. `npm test` comprueba que coinciden.
 
 **No ejecutes `npm run images` después de poner fotos reales**: ese comando vuelve a descargar las fotos de stock de Unsplash y sobrescribe las que hayas puesto.
+
+## Tipografías
+
+Se sirven desde el propio sitio (`assets/fonts/` y `css/fonts.css`), así que no se contacta con Google al cargar la web. Si algún día cambias de familia o de pesos, edita la URL en `tools/fetch-fonts.mjs` y ejecuta `npm run fonts`.
+
+## Mapa de Google
+
+El mapa **no se carga hasta que el visitante pulsa «Ver el mapa»**, y mientras tanto queda un enlace a Google Maps. Así no se envía su IP a Google sin que lo pida, y no hace falta un banner de cookies.
+
+## Páginas legales
+
+`pages/aviso-legal.html` y `pages/privacidad.html` son un **borrador**. Los datos que faltan aparecen resaltados en amarillo (`<mark class="pendiente">`). Rellénalos, haz que los revise un profesional (gestoría o abogado) y quita el comentario `BORRADOR` de cada archivo.
+
+## Portada
+
+Tiene cuatro bloques: hero, servicios (3 destacados con duración y precio leídos de `data.js`), una banda de tienda (champús y tarjeta regalo) y la visita. Jaldún y las tarjetas regalo viven completos en la Tienda; la portada solo enlaza a ellos.
+
+## Antes de publicar
+
+```bash
+npm run pendientes
+```
+
+Lista todo lo que sigue sin rellenar: datos legales y dominio. Se resuelve así:
+
+1. Rellena los campos amarillos de las dos páginas legales.
+2. Cuando haya dominio, sustituye el provisional (`https://TU-DOMINIO.es`) en canonical, `og:image`, JSON-LD, `sitemap.xml` y `robots.txt` con un solo comando:
+
+   ```bash
+   npm run domain -- https://www.tudominio.es
+   ```
+
+3. Confirma precios y horario definitivos (`js/data.js` y JSON-LD).
+4. Sube **solo** `index.html`, `404.html`, `robots.txt`, `sitemap.xml`, `pages/`, `css/`, `js/` y `assets/`. No subas `tests/`, `tools/`, `docs/` ni `.claude/`.
+5. Configura el alojamiento para que sirva `404.html` en las URLs que no existan (Netlify, Vercel, GitHub Pages y Cloudflare Pages lo hacen solos).
+   `404.html` se ve igual en cualquier URL (`/a/b/c`) y abierta desde el disco: sus rutas son relativas a la raíz gracias a un `<base>`. No las cambies a rutas con `/` inicial ni quites el `<base>`.
 
 ## Tests
 
@@ -36,31 +71,26 @@ Las fotos actuales son de stock (Unsplash) y provisionales, salvo el retrato de 
 npm test
 ```
 
-Comprueban las funciones de `js/lib.js`, los datos de `js/data.js`, la estructura y los enlaces de cada página, el tamaño real de las fotos y el horario del JSON-LD.
+Comprueban las funciones de `js/lib.js`, los datos de `js/data.js`, la estructura y los enlaces de cada página, el tamaño real de las fotos, el horario del JSON-LD, el sitemap, `robots.txt`, la 404 y que no se cargue nada de Google sin que el visitante lo pida.
 
 ## Estructura
 
 | Carpeta o archivo | Qué contiene |
 |---|---|
-| `index.html`, `pages/` | Las 4 páginas |
-| `css/styles.css` | Todos los estilos (tokens de color y tipografía arriba del todo) |
+| `index.html`, `pages/` | Las 4 páginas principales y las 2 legales |
+| `404.html`, `robots.txt`, `sitemap.xml` | Página de error y archivos para buscadores |
+| `css/styles.css` | Todos los estilos, **mobile-first**: la base es el móvil y se amplía con `min-width` (600, 760, 900 px…). Nunca `max-width`: `npm test` lo comprueba |
+| `css/fonts.css` | `@font-face` (generado por `npm run fonts`) |
 | `js/data.js` | Datos de negocio |
 | `js/lib.js` | Funciones sin DOM (precios, WhatsApp, horario) |
-| `js/main.js` | Comportamiento: menú, pestañas, formulario, animaciones |
-| `assets/` | Fotos e iconos |
-| `tools/` | Servidor local y descarga de fotos |
+| `js/main.js` | Comportamiento: menú, pestañas, formulario, mapa, animaciones |
+| `assets/` | Fotos, tipografías e iconos |
+| `tools/` | Servidor local y scripts (fotos, fuentes, dominio, pendientes) |
 | `docs/superpowers/` | Especificación y plan |
-
-## Antes de publicar
-
-- Poner URLs absolutas en `og:image`, `canonical` y la `image` del JSON-LD cuando haya dominio.
-- Alojar las fuentes en el propio servidor (Google Fonts remoto plantea problemas de RGPD en España).
-- Cargar el mapa de Google solo tras un clic (o con aviso de cookies).
-- Textos legales reales (aviso legal y privacidad, LSSI).
-- Precios y horario definitivos.
 
 ## Pendiente de la clienta
 
-- Fotos reales del local, de Paula, de sus trabajos y de los productos.
+- Fotos reales del local y de sus trabajos.
+- Confirmar con Jaldún o con la clienta que se pueden usar las fotos de producto en la web.
 - Precios y horario definitivos.
-- Textos legales (aviso legal y privacidad) y dominio.
+- Datos legales (titular, NIF, correo) y dominio.

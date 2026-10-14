@@ -6,6 +6,14 @@ const data = require('../js/data.js');
 const html = read('pages/tienda.html');
 const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
 
+test('tienda: los champús usan las fotos reales de producto', () => {
+  for (const name of ['champu-equilibrante', 'champu-vitalzen', 'champu-multiefecto']) {
+    assert.ok(html.includes(`<img src="../assets/img/${name}.webp" alt="Frasco del champú `), name);
+    assert.ok(html.includes(`${name}.webp" alt="`) && /width="2250" height="2250" loading="lazy">/.test(html), name);
+  }
+  assert.ok(!html.includes('class="bottle'), 'quedan botes dibujados con CSS');
+});
+
 test('tienda: marcador reemplazado y secciones con ancla', () => {
   assert.ok(!html.includes('<!-- secciones-tienda -->'));
   for (const id of ['jaldun', 'bonos', 'tarjetas-regalo']) assert.match(html, new RegExp(`<section[^>]*id="${id}"`));
