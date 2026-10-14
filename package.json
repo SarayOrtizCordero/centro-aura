@@ -6,6 +6,9 @@
   "scripts": {
     "test": "node --test",
     "serve": "node tools/serve.mjs",
-    "images": "node tools/fetch-images.mjs"
+    "images": "node tools/fetch-images.mjs",
+    "fonts": "node tools/fetch-fonts.mjs",
+    "domain": "node tools/set-domain.mjs",
+    "pendientes": "node tools/pendientes.mjs"
   }
 }

@@ -39,6 +39,11 @@ http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
     res.end(body);
   } catch {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404 · No encontrado');
+    try {
+      const body = await readFile(path.join(ROOT, '404.html'));
+      res.writeHead(404, { 'Content-Type': TYPES['.html'] }).end(body);
+    } catch {
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404 · No encontrado');
+    }
   }
 }).listen(PORT, () => console.log(`Centro Aura → http://localhost:${PORT}`));

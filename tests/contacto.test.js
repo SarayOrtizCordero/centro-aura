@@ -33,6 +33,8 @@ test('contacto: el selector incluye todos los servicios de data.js', () => {
   }
 });
 
-test('contacto: mapa incrustado', () => {
-  assert.match(html, /<iframe src="https:\/\/www\.google\.com\/maps\?q=[^"]+&amp;output=embed" title="[^"]+" loading="lazy"/);
+test('contacto: el mapa no contacta con Google hasta el clic', () => {
+  assert.ok(!html.includes('<iframe'));
+  assert.match(html, /<div class="map" data-map-src="https:\/\/www\.google\.com\/maps\?q=[^"]+&amp;output=embed" data-map-title="[^"]+">/);
+  assert.match(html, /<button class="btn btn--solid" type="button" data-map-load hidden>Ver el mapa<\/button>/);
 });
