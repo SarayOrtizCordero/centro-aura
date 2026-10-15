@@ -15,4 +15,4 @@ Son provisionales: se sustituirán por fotos reales de Centro Aura manteniendo e
 
 ## Fotos de producto
 
-`champu-equilibrante.webp`, `champu-vitalzen.webp` (Vitalzen) y `champu-multiefecto.webp`: fotos de los champús Jaldún aportadas para la demo. Confirmar el permiso de uso antes de publicar.
+`champu-equilibrante.webp`, `champu-vitalzen.webp` (Vitalzen) y `champu-multiefecto.webp`: fotos de los champús Jaldún, aportadas por la clienta (que recibe los productos de la marca).

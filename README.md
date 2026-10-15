@@ -91,6 +91,5 @@ Comprueban las funciones de `js/lib.js`, los datos de `js/data.js`, la estructur
 ## Pendiente de la clienta
 
 - Fotos reales del local y de sus trabajos.
-- Confirmar con Jaldún o con la clienta que se pueden usar las fotos de producto en la web.
 - Precios y horario definitivos.
 - Datos legales (titular, NIF, correo) y dominio.
