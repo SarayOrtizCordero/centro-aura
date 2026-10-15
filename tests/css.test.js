@@ -10,12 +10,12 @@ test('css: mobile-first, sin media queries de max-width', () => {
   assert.deepEqual(desktopFirst, [], 'los estilos base son los de móvil; se amplía con min-width');
 });
 
-test('css: puntos de ruptura conocidos (600, 700, 760, 860, 900, 960)', () => {
+test('css: puntos de ruptura conocidos (600, 700, 760, 860, 900, 1280)', () => {
   const widths = queries
     .map((q) => q.match(/min-width:\s*(\d+)px/))
     .filter(Boolean)
     .map((m) => Number(m[1]));
-  for (const w of widths) assert.ok([600, 700, 760, 860, 900, 960].includes(w), `punto de ruptura inesperado: ${w}px`);
+  for (const w of widths) assert.ok([600, 700, 760, 860, 900, 1280].includes(w), `punto de ruptura inesperado: ${w}px`);
 });
 
 test('css: el menú móvil es la base y la navegación en línea llega con min-width: 900px', () => {

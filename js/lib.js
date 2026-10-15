@@ -11,7 +11,8 @@
 
   function formatPrice(item) {
     if (!item || typeof item.price !== 'number') return 'Consultar';
-    return (item.from ? 'desde' + NBSP : '') + formatEuros(item.price);
+    const amount = typeof item.priceMax === 'number' ? item.price + '–' + item.priceMax : item.price;
+    return (item.from ? 'desde' + NBSP : '') + formatEuros(amount);
   }
 
   function formatSaving(item) {

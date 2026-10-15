@@ -15,13 +15,13 @@ test('inicio: cuatro bloques (hero, servicios, tienda, visita) en orden', () => 
 });
 
 test('inicio: tres destacados enlazan a servicios', () => {
-  for (const id of ['spa-capilar', 'consulta-tricologica', 'terapias-capilares']) {
+  for (const id of ['spa-esencial', 'spa-equilibrio', 'spa-aura']) {
     assert.match(html, new RegExp(`<a class="feature-card reveal" href="pages/servicios\\.html#${id}">`));
   }
 });
 
 test('inicio: los destacados muestran duración y precio desde data.js', () => {
-  for (const id of ['spa-capilar', 'consulta-tricologica', 'terapias-capilares']) {
+  for (const id of ['spa-esencial', 'spa-equilibrio', 'spa-aura']) {
     assert.match(html, new RegExp(`data-duration="${id}"`), id);
     assert.match(html, new RegExp(`data-price="${id}"`), id);
   }

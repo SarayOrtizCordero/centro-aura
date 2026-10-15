@@ -417,7 +417,7 @@ body.menu-open .site-header { background: var(--c-bg); border-bottom-color: var(
 .category__media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .category__title { margin-bottom: 0.75rem; font-size: var(--fs-h2); }
 .category__intro { color: var(--c-text-soft); font-size: var(--fs-lead); }
-@media (min-width: 960px) {
+@media (min-width: 1280px) {
   .category { grid-template-columns: 5fr 7fr; align-items: start; }
   .category__media { position: sticky; top: calc(var(--header-h) + 2rem); }
   .category__media img { aspect-ratio: 4 / 5; }
@@ -425,13 +425,45 @@ body.menu-open .site-header { background: var(--c-bg); border-bottom-color: var(
 
 .service-list { margin-top: 1.5rem; border-top: 1px solid var(--c-line); }
 .service { display: grid; gap: 1rem 2rem; padding-block: 1.9rem; border-bottom: 1px solid var(--c-line); }
-.service h3 { margin-bottom: 0.4rem; font-size: var(--fs-h3); }
-.service p { max-width: 54ch; margin: 0; color: var(--c-text-soft); }
-.service__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
-.service__duration { color: var(--c-text-soft); font-size: var(--fs-small); white-space: nowrap; }
+.service h3 { margin: 0; font-size: clamp(1.4rem, 2.4vw, 1.65rem); }
+.service p { max-width: 54ch; margin: 0.4rem 0 0; color: var(--c-text-soft); }
+/* Subtítulo discreto bajo el nombre ("Incluye lavado, corte y secado") */
+.service p.service__note {
+  margin-top: 0.15rem; font-family: var(--f-serif); font-size: 1.1rem; font-style: italic; line-height: 1.3;
+}
+/* Precio sobre duración y el botón a su lado en móvil; los tres apilados a la derecha en escritorio.
+   El botón lleva más aire respecto al precio que el que hay entre precio y duración. */
+.service__meta {
+  display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto;
+  column-gap: 1.5rem; row-gap: 0.2rem; align-items: center;
+}
+.service__meta .price { grid-column: 1; grid-row: 1; }
+.service__duration { grid-column: 1; grid-row: 2; color: var(--c-text-soft); font-size: var(--fs-small); }
+.service__meta .btn { grid-column: 2; grid-row: 1 / span 2; }
+/* El precio es lo que más se busca en la carta: más grande y con algo más de cuerpo */
+.service .price { font-size: 2.1rem; font-weight: 500; }
 @media (min-width: 700px) {
   .service { grid-template-columns: 1fr auto; align-items: center; }
-  .service__meta { flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+  .service__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+  .service__duration { white-space: nowrap; }
+  .service__meta .btn { margin-top: 0.75rem; }
+}
+
+/* Lista de lo que incluye un servicio */
+.service__includes { margin: 0.9rem 0 0; padding-left: 1.1rem; color: var(--c-text-soft); font-size: var(--fs-small); }
+.service__includes li { margin-bottom: 0.2rem; }
+.service__includes li::marker { color: var(--c-accent); }
+/* Rótulo que agrupa servicios dentro de una categoría (Barros, Alisados…) */
+.service-group {
+  margin: 2.25rem 0 0; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--c-text-soft);
+}
+.service-group + .service-list { margin-top: 0.5rem; }
+/* Aviso de precios orientativos */
+.price-note {
+  margin: 1.5rem 0 0; padding: 0.9rem 1.1rem;
+  border-left: 2px solid var(--c-accent); background: var(--c-bg-alt);
+  color: var(--c-text-soft); font-size: var(--fs-small);
 }
 
 .steps { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); padding: 0; list-style: none; counter-reset: paso; }
@@ -444,27 +476,13 @@ body.menu-open .site-header { background: var(--c-bg); border-bottom-color: var(
 .step h3 { margin-bottom: 0.6rem; font-size: 1.6rem; }
 .step p { max-width: 32ch; margin-inline: auto; color: var(--c-text-soft); }
 
-/* 9b. Tienda: aviso, bonos y tarjetas --------------------------------------- */
+/* 9b. Tienda: aviso y tarjetas --------------------------------------- */
 .note {
   display: flex; align-items: center; justify-content: center; gap: 0.6rem;
   margin: 0; padding: 1rem var(--gutter);
   background: var(--c-bg-alt); color: var(--c-text-soft); font-size: var(--fs-small); text-align: center;
 }
 .note svg { flex: none; width: 18px; height: 18px; color: var(--c-muted); }
-
-.bono-grid { display: grid; gap: clamp(1rem, 2.5vw, 1.75rem); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 920px; }
-.bono {
-  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
-  padding: clamp(2rem, 4vw, 3rem); border: 1px solid var(--c-line); background: var(--c-bg); text-align: center;
-}
-.bono h3 { font-size: 1.9rem; }
-.bono p { margin: 0; color: var(--c-text-soft); }
-.bono .price { margin-top: auto; padding-top: 0.75rem; font-size: 2.2rem; }
-.badge {
-  display: inline-block; padding: 0.35rem 0.9rem; border-radius: 999px; background: var(--c-bg-alt);
-  font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-}
-.badge:empty { display: none; }
 
 .giftcard {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem;

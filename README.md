@@ -17,6 +17,10 @@ No hace falta instalar nada (solo Node 18 o superior para el servidor y los test
 
 Los precios, duraciones y el horario están en **`js/data.js`**. Cambia el valor y guarda: las páginas lo leen de ahí.
 
+- Un precio puede ser un **rango**: `price` es el mínimo y `priceMax` el máximo (se ve como `30–40 €`). Los rangos van con `approx: true` y la pestaña de Barros, alisados y antifrizz avisa de que son orientativos.
+- Si un servicio no tiene `duration`, no se muestra duración.
+- Si cambias un precio, cambia **también** el texto de respaldo que hay en `pages/servicios.html` (el que se ve sin JavaScript). `npm test` avisa si no coinciden.
+
 - Si cambias el **teléfono**, sustituye también `34610167764` en los enlaces de respaldo del HTML (`wa.me`, `tel:`) y en el JSON-LD de `index.html`: esos enlaces no se generan desde `data.js`.
 - Si cambias el **horario**, actualiza también el bloque `application/ld+json` de `index.html`. `npm test` avisa si no coinciden.
 

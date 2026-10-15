@@ -12,6 +12,11 @@ test('formatPrice: precio "desde"', () => {
   assert.equal(lib.formatPrice({ price: 35, from: true }), `desde${NBSP}35${NBSP}€`);
 });
 
+test('formatPrice: rango con guion largo y espacio duro antes del euro', () => {
+  assert.equal(lib.formatPrice({ price: 30, priceMax: 40 }), `30–40${NBSP}€`);
+  assert.equal(lib.formatPrice({ price: 100, priceMax: 140, approx: true }), `100–140${NBSP}€`);
+});
+
 test('formatPrice: sin dato muestra "Consultar"', () => {
   assert.equal(lib.formatPrice(undefined), 'Consultar');
   assert.equal(lib.formatPrice({}), 'Consultar');
