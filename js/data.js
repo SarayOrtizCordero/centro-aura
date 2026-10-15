@@ -1,6 +1,9 @@
 /* Centro Aura — datos de negocio.
    Los precios, duraciones, el horario y el teléfono que se muestran en la web
-   se leen de aquí. Precios y horario ORIENTATIVOS: pendientes de confirmar por Paula.
+   se leen de aquí. El horario es ORIENTATIVO: pendiente de confirmar por Paula.
+   Un precio puede ser un rango: "price" es el mínimo y "priceMax" el máximo
+   (se muestra como "30–40 €"). "approx: true" marca los precios que varían
+   según los productos que se gasten.
    Si cambias el horario, actualiza también el bloque JSON-LD de index.html
    (npm test avisa si no coinciden).
    Si cambias el teléfono, sustituye también "34610167764" en los enlaces de
@@ -26,30 +29,38 @@
     ],
 
     categories: [
-      { id: 'salud', label: 'Salud capilar' },
-      { id: 'tratamientos', label: 'Tratamientos' },
+      { id: 'spa', label: 'Spa' },
+      { id: 'tratamientos', label: 'Barros, alisados y antifrizz' },
       { id: 'peluqueria', label: 'Peluquería' }
     ],
 
     items: {
-      // Servicios
-      'consulta-tricologica': { type: 'servicio', category: 'salud', name: 'Consulta tricológica', duration: '45 min', price: 30, from: false },
-      'spa-capilar':          { type: 'servicio', category: 'salud', name: 'Spa capilar', duration: '60 min', price: 35, from: true },
-      'terapias-capilares':   { type: 'servicio', category: 'salud', name: 'Terapias capilares', duration: '60 min', price: 40, from: true },
-      'barros':               { type: 'servicio', category: 'salud', name: 'Barros naturales', duration: '45 min', price: 30, from: true },
-      'alisados':             { type: 'servicio', category: 'tratamientos', name: 'Alisados', duration: '2–3 h', price: 90, from: true },
-      'hidratacion':          { type: 'servicio', category: 'tratamientos', name: 'Hidratación y reparación', duration: '45 min', price: 25, from: true },
-      'corte':                { type: 'servicio', category: 'peluqueria', name: 'Corte y peinado', duration: '45 min', price: 18, from: true },
-      'peinados':             { type: 'servicio', category: 'peluqueria', name: 'Peinados y recogidos', duration: '60 min', price: 25, from: true },
+      // Spa
+      'spa-esencial':   { type: 'servicio', category: 'spa', name: 'Spa esencial',   duration: '50 min aprox.',      price: 40, from: false },
+      'spa-equilibrio': { type: 'servicio', category: 'spa', name: 'Spa equilibrio', duration: '1 h 10 min aprox.',  price: 50, from: false },
+      'spa-aura':       { type: 'servicio', category: 'spa', name: 'Spa aura',       duration: '1 h 30 min',         price: 70, from: false },
+
+      // Barros, alisados y antifrizz: precios orientativos (varían según los productos que se gasten).
+      // "contact" es el nombre que aparece en el selector del formulario de Contacto.
+      'barro-raiz':            { type: 'servicio', category: 'tratamientos', name: 'Barro en raíz',                  contact: 'Barros',    price: 30,  priceMax: 40,  approx: true },
+      'barro-completo':        { type: 'servicio', category: 'tratamientos', name: 'Barro completo',                 contact: 'Barros',    price: 50,  priceMax: 70,  approx: true },
+      'alisado-corto':         { type: 'servicio', category: 'tratamientos', name: 'Alisado en pelo corto',          contact: 'Alisados',  price: 100, priceMax: 140, approx: true },
+      'alisado-media-melena':  { type: 'servicio', category: 'tratamientos', name: 'Alisado en media melena',        contact: 'Alisados',  price: 140, priceMax: 180, approx: true },
+      'alisado-largo':         { type: 'servicio', category: 'tratamientos', name: 'Alisado en pelo largo',          contact: 'Alisados',  price: 180, priceMax: 230, approx: true },
+      'alisado-muy-largo':     { type: 'servicio', category: 'tratamientos', name: 'Alisado en pelo muy largo',      contact: 'Alisados',  price: 230, priceMax: 270, approx: true },
+      'antifrizz-corto':       { type: 'servicio', category: 'tratamientos', name: 'Antifrizz en pelo corto',        contact: 'Antifrizz', price: 45,  priceMax: 50,  approx: true },
+      'antifrizz-medio-largo': { type: 'servicio', category: 'tratamientos', name: 'Antifrizz en pelo medio o largo', contact: 'Antifrizz', price: 50,  priceMax: 60,  approx: true },
+      'tratamiento-fibra':     { type: 'servicio', category: 'tratamientos', name: 'Tratamiento de la fibra capilar', price: 30, priceMax: 50, approx: true },
+
+      // Peluquería
+      'lavado-peinado': { type: 'servicio', category: 'peluqueria', name: 'Lavado y peinado', price: 13, from: false },
+      'corte':          { type: 'servicio', category: 'peluqueria', name: 'Corte',            price: 15, from: false },
+      'corte-peinado':  { type: 'servicio', category: 'peluqueria', name: 'Corte y peinado',  price: 22, from: false },
 
       // Productos Jaldún
       'jaldun-equilibrante': { type: 'producto', name: 'Champú Equilibrante Jaldún', price: 22 },
       'jaldun-vitalzen':     { type: 'producto', name: 'Champú Vitalzen Fortificante Jaldún', price: 24 },
       'jaldun-multiefecto':  { type: 'producto', name: 'Champú Multiefecto Regulador Jaldún', price: 22 },
-
-      // Bonos
-      'bono-spa-5':       { type: 'bono', name: 'Bono 5 sesiones de Spa Capilar', price: 150, saving: 25 },
-      'bono-tricologico': { type: 'bono', name: 'Bono tratamiento tricológico', price: 170, saving: 20 },
 
       // Tarjetas regalo
       'regalo-25': { type: 'regalo', name: 'Tarjeta regalo de 25 €', price: 25 },

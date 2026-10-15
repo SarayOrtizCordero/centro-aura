@@ -16,25 +16,20 @@ test('tienda: los champús usan las fotos reales de producto', () => {
 
 test('tienda: marcador reemplazado y secciones con ancla', () => {
   assert.ok(!html.includes('<!-- secciones-tienda -->'));
-  for (const id of ['jaldun', 'bonos', 'tarjetas-regalo']) assert.match(html, new RegExp(`<section[^>]*id="${id}"`));
+  for (const id of ['jaldun', 'tarjetas-regalo']) assert.match(html, new RegExp(`<section[^>]*id="${id}"`));
+  assert.ok(!/id="bonos"|href="#bonos"/.test(html), 'los bonos se retiraron hasta tener datos');
 });
 
-test('tienda: todos los productos, bonos y tarjetas de data.js tienen precio en la página', () => {
+test('tienda: todos los productos y tarjetas de data.js tienen precio en la página', () => {
   for (const [id, item] of Object.entries(data.items)) {
     if (item.type === 'servicio') continue;
     assert.match(html, new RegExp(`data-price="${id}"`), id);
   }
 });
 
-test('tienda: los bonos muestran el ahorro', () => {
-  for (const [id, item] of Object.entries(data.items)) {
-    if (item.type === 'bono') assert.match(html, new RegExp(`data-saving="${id}"`), id);
-  }
-});
-
 test('tienda: los botones de compra usan el mensaje de producto', () => {
   const tags = main.match(/<a\b[^>]*data-wa="[^"]+"[^>]*>/g) || [];
-  assert.equal(tags.length, 9);
+  assert.equal(tags.length, 7);
   for (const tag of tags) assert.match(tag, /data-wa-kind="producto"/, tag);
 });
 

@@ -21,21 +21,55 @@ test('todos los items tienen tipo, nombre y precio numérico', () => {
 
 test('los servicios tienen categoría válida y duración', () => {
   const cats = data.categories.map((c) => c.id);
-  assert.deepEqual(cats, ['salud', 'tratamientos', 'peluqueria']);
+  assert.deepEqual(cats, ['spa', 'tratamientos', 'peluqueria']);
   const servicios = Object.entries(data.items).filter(([, i]) => i.type === 'servicio');
-  assert.equal(servicios.length, 8);
+  assert.equal(servicios.length, 15);
   for (const [id, item] of servicios) {
     assert.ok(cats.includes(item.category), `${id}: categoría inválida`);
-    assert.ok(item.duration, `${id}: falta duración`);
   }
 });
 
-test('el catálogo tiene los 16 items esperados', () => {
+test('los tres Spa tienen duración; el resto no inventa una', () => {
+  for (const [id, item] of Object.entries(data.items)) {
+    if (item.category === 'spa') assert.ok(item.duration, `${id}: falta duración`);
+    else assert.equal(item.duration, undefined, `${id}: no se ha dado duración`);
+  }
+});
+
+test('precios en rango: máximo mayor que mínimo y marcados como orientativos', () => {
+  const rangos = Object.entries(data.items).filter(([, i]) => i.priceMax !== undefined);
+  assert.equal(rangos.length, 9);
+  for (const [id, item] of rangos) {
+    assert.ok(item.priceMax > item.price, `${id}: priceMax debe ser mayor que price`);
+    assert.equal(item.approx, true, `${id}: un rango es orientativo`);
+    assert.equal(item.category, 'tratamientos', id);
+  }
+});
+
+test('precios de la carta (lista dada por Paula)', () => {
+  const esperado = {
+    'spa-esencial': [40], 'spa-equilibrio': [50], 'spa-aura': [70],
+    'lavado-peinado': [13], 'corte': [15], 'corte-peinado': [22],
+    'barro-raiz': [30, 40], 'barro-completo': [50, 70],
+    'alisado-corto': [100, 140], 'alisado-media-melena': [140, 180],
+    'alisado-largo': [180, 230], 'alisado-muy-largo': [230, 270],
+    'antifrizz-corto': [45, 50], 'antifrizz-medio-largo': [50, 60],
+    'tratamiento-fibra': [30, 50]
+  };
+  for (const [id, [min, max]] of Object.entries(esperado)) {
+    assert.equal(data.items[id].price, min, `${id}: mínimo`);
+    assert.equal(data.items[id].priceMax, max, `${id}: máximo`);
+  }
+});
+
+test('el catálogo tiene los 21 items esperados', () => {
   const expectedIds = [
-    'consulta-tricologica', 'spa-capilar', 'terapias-capilares',
-    'barros', 'alisados', 'hidratacion', 'corte',
-    'peinados', 'jaldun-equilibrante', 'jaldun-vitalzen',
-    'jaldun-multiefecto', 'bono-spa-5', 'bono-tricologico',
+    'spa-esencial', 'spa-equilibrio', 'spa-aura',
+    'barro-raiz', 'barro-completo',
+    'alisado-corto', 'alisado-media-melena', 'alisado-largo', 'alisado-muy-largo',
+    'antifrizz-corto', 'antifrizz-medio-largo', 'tratamiento-fibra',
+    'lavado-peinado', 'corte', 'corte-peinado',
+    'jaldun-equilibrante', 'jaldun-vitalzen', 'jaldun-multiefecto',
     'regalo-25', 'regalo-50', 'regalo-75'
   ];
   assert.deepEqual(Object.keys(data.items).sort(), expectedIds.sort());
@@ -44,12 +78,8 @@ test('el catálogo tiene los 16 items esperados', () => {
   }
 });
 
-test('los bonos indican el ahorro', () => {
-  for (const id of ['bono-spa-5', 'bono-tricologico']) {
-    const item = data.items[id];
-    assert.ok(typeof item.saving === 'number' && item.saving > 0, `${id}: saving no es un número positivo`);
-    assert.ok(item.saving < item.price, `${id}: saving no es menor que el precio`);
-  }
+test('ya no quedan bonos: dependían de servicios que se retiraron', () => {
+  assert.deepEqual(Object.values(data.items).filter((i) => i.type === 'bono'), []);
 });
 
 test('horario con formato "H:MM – HH:MM"', () => {

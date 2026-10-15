@@ -27,10 +27,15 @@ test('contacto: formulario con campos obligatorios, etiquetas y errores', () => 
   assert.match(html, /<label for="f-servicio">/);
 });
 
-test('contacto: el selector incluye todos los servicios de data.js', () => {
+test('contacto: el selector incluye todos los servicios de data.js (agrupados por familia)', () => {
+  const labels = new Set();
   for (const item of Object.values(data.items)) {
-    if (item.type === 'servicio') assert.match(html, new RegExp(`<option>${item.name}</option>`), item.name);
+    if (item.type !== 'servicio') continue;
+    const label = item.contact || item.name;
+    labels.add(label);
+    assert.ok(html.includes(`<option>${label}</option>`), label);
   }
+  assert.equal(labels.size, 10, 'spa x3, barros, alisados, antifrizz, fibra, lavado, corte, corte y peinado');
 });
 
 test('contacto: el mapa no contacta con Google hasta el clic', () => {
