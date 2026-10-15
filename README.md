@@ -58,7 +58,7 @@ npm run pendientes
 Lista todo lo que sigue sin rellenar: datos legales y dominio. Se resuelve así:
 
 1. Rellena los campos amarillos de las dos páginas legales.
-2. Cuando haya dominio, sustituye el provisional (`https://TU-DOMINIO.es`) en canonical, `og:image`, JSON-LD, `sitemap.xml` y `robots.txt` con un solo comando:
+2. El sitio usa ahora `https://centro-aura.vercel.app`. Cuando compres un dominio propio, cámbialo en canonical, `og:image`, JSON-LD, `sitemap.xml` y `robots.txt` con un solo comando (sustituye el dominio que haya en ese momento, así que se puede repetir):
 
    ```bash
    npm run domain -- https://www.tudominio.es
