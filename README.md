@@ -65,7 +65,7 @@ Lista todo lo que sigue sin rellenar: datos legales y dominio. Se resuelve así:
    ```
 
 3. Confirma precios y horario definitivos (`js/data.js` y JSON-LD).
-4. Sube **solo** `index.html`, `404.html`, `robots.txt`, `sitemap.xml`, `pages/`, `css/`, `js/` y `assets/`. No subas `tests/`, `tools/`, `docs/` ni `.claude/`.
+4. Publica solo la web. `npm run build` copia a `dist/` únicamente `index.html`, `404.html`, `robots.txt`, `sitemap.xml`, `pages/`, `css/`, `js/` y `assets/` (sin `tests/`, `tools/`, `docs/`, `README.md` ni `CREDITOS.md`). En Vercel lo hace `vercel.json` solo: ejecuta ese build y publica `dist/`. Si añades una carpeta nueva a la web, inclúyela en la lista `PUBLIC` de `tools/build.mjs`.
 5. Configura el alojamiento para que sirva `404.html` en las URLs que no existan (Netlify, Vercel, GitHub Pages y Cloudflare Pages lo hacen solos).
    `404.html` se ve igual en cualquier URL (`/a/b/c`) y abierta desde el disco: sus rutas son relativas a la raíz gracias a un `<base>`. No las cambies a rutas con `/` inicial ni quites el `<base>`.
 

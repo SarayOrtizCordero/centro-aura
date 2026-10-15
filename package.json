@@ -9,6 +9,7 @@
     "images": "node tools/fetch-images.mjs",
     "fonts": "node tools/fetch-fonts.mjs",
     "domain": "node tools/set-domain.mjs",
-    "pendientes": "node tools/pendientes.mjs"
+    "pendientes": "node tools/pendientes.mjs",
+    "build": "node tools/build.mjs"
   }
 }
