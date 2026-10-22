@@ -26,10 +26,10 @@
   --fs-h1: clamp(2.8rem, 8vw, 5rem);
   --fs-h2: clamp(2rem, 4.2vw, 3rem);
   --fs-h3: clamp(1.5rem, 3vw, 1.9rem);
-  --fs-body: 1.0625rem;
-  --fs-lead: 1.1875rem;
-  --fs-small: 0.9375rem;
-  --fs-label: 0.75rem;
+  --fs-body: 1.125rem;
+  --fs-lead: 1.25rem;
+  --fs-small: 1rem;
+  --fs-label: 0.8125rem;
 
   --space-section: clamp(3.5rem, 8vw, 6rem);
   --gutter: clamp(1rem, 4vw, 2.5rem);
@@ -136,7 +136,7 @@ ul[role="list"] { margin-block: 0; padding: 0; list-style: none; }
   min-height: 48px; padding: 0.75rem 1.9rem;
   border: 1px solid var(--c-text); border-radius: 999px;
   background: transparent; color: var(--c-text);
-  font: 500 0.78rem/1 var(--f-sans); letter-spacing: 0.2em; text-transform: uppercase;
+  font: 500 0.875rem/1 var(--f-sans); letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap; cursor: pointer;
   transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
 }
@@ -199,7 +199,7 @@ a:hover .link-arrow::after { transform: translateX(4px); }
 .brand { display: inline-flex; flex-direction: column; align-items: center; color: var(--c-text); line-height: 1; text-decoration: none; }
 .brand__name { margin-right: -0.3em; font-family: var(--f-serif); font-size: 1.7rem; font-weight: 500; letter-spacing: 0.3em; }
 .brand__rule { width: 100%; height: 1px; margin: 0.3rem 0 0.35rem; background: var(--c-accent); }
-.brand__tag { font-size: 0.56rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; }
+.brand__tag { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
 
 /* Móvil primero: panel desplegable bajo la cabecera, a la altura de su contenido.
    El resto de la página queda visible (atenuada) y un toque fuera lo cierra. */
@@ -266,7 +266,7 @@ body.menu-open .site-header { background: var(--c-bg); border-bottom-color: var(
   .site-nav .btn { width: auto; }
   .site-nav a:not(.btn) {
     display: inline; min-height: 0; padding-block: 0.4rem;
-    font-family: var(--f-sans); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    font-family: var(--f-sans); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
     background: linear-gradient(var(--c-accent), var(--c-accent)) left bottom / 0 1px no-repeat;
     transition: background-size 0.35s var(--ease);
   }
@@ -336,7 +336,7 @@ body.menu-open .site-header { background: var(--c-bg); border-bottom-color: var(
 .hero__rule { width: 80px; height: 1px; margin: 1.5rem auto; border: 0; background: var(--c-accent); }
 .hero__subtitle {
   margin: 0 -0.36em 0 0;
-  font-size: clamp(0.72rem, 2vw, 0.9rem); font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase;
+  font-size: clamp(0.8125rem, 2vw, 0.9rem); font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--c-text);
 }
 .hero .actions { margin-top: 2.75rem; }
@@ -406,7 +406,7 @@ body.menu-open .site-header { background: var(--c-bg); border-bottom-color: var(
 .tab {
   min-height: 48px; padding: 0.7rem 1.5rem;
   border: 1px solid transparent; border-radius: 999px; background: none; color: var(--c-text-soft);
-  font: 500 0.78rem/1 var(--f-sans); letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  font: 500 0.875rem/1 var(--f-sans); letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
   transition: background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 .tab:hover { border-color: var(--c-line); color: var(--c-text); }
