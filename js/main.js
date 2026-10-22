@@ -44,6 +44,9 @@
       el.href = lib.buildWaUrl(data.business.phoneDigits, message);
       el.target = '_blank';
       el.rel = 'noopener';
+      /* Un lector de pantalla recorre los botones fuera de contexto: añade a cuál se refiere */
+      const label = el.textContent.replace(/\s+/g, ' ').trim();
+      if (el.dataset.wa && label && !el.hasAttribute('aria-label')) el.setAttribute('aria-label', label + ': ' + el.dataset.wa);
     });
   }
 
